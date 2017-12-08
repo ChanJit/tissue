@@ -1,0 +1,12 @@
+.env
+node_modules
+npm-debug.log
+position-opening-service*.json
+coverage
+env
+package
+.idea
+.serverless
+.DS_Store
+.vscode
+scripts/local-email.js
