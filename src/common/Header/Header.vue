@@ -1,6 +1,6 @@
 <template>
   <div class="navbar navbar-default" role="navigation">
-    <div class="container">
+    <div class="header-container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse" id="header-mobile-button">
           <span class="sr-only">Toggle navigation</span>
@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="logo my logo-realign" title="Leading Job Site in Malaysia - Find Jobs, Advertise Jobs in Malaysia" href="//www.jobstreet.com.my" id="header-title-link"></a>
-        <button type="submit" id="btn-login-header" class="btn btn-login pull-right visible-xs mobile-login" data-toggle="modal" data-target="#login-panel">Log In</button>
+        <button type="submit" id="btn-login-header" class="header-btn btn-login pull-right visible-xs mobile-login" data-toggle="modal" data-target="#login-panel">Log In</button>
       </div>
       <div class="collapse navbar-collapse navbar-left header-left-menu">
         <ul class="nav navbar-nav header-left-ul">
@@ -31,16 +31,16 @@
       <div class="collapse navbar-collapse navbar-right header-right-menu hidden-xs">
         <ul class="nav navbar-nav">
 
-          <li><button type="submit" class="btn btn-link btn-header-login header-realign" data-toggle="modal" data-target="#login-panel" id="header-login-button" onclick="_gaq.push(['_trackEvent', 'JSMY 2-Login', 'Login button (image) clicked', 'JSMY Landing Page']);return false;">Log In</button></li>
-          <li><button type="submit" class="btn btn-link btn-header-signup header-realign" data-toggle="modal" data-target="#signup-panel" id="header-signup-button" onclick="_gaq.push(['_trackEvent', 'JSMY Signup', 'Signup link (Header) clicked', 'JSMY Landing Page']);return false;">Sign Up</button></li>
-          <li><a title="For Employers Malaysia - Log in and post job ads" href="https://www.jobstreet.com.my/employers/" class="btn btn-success btn-employers header-realign" id="header-employer-link">Employers </a></li>
+          <li><button type="submit" class="header-btn btn-link btn-header-login header-realign" data-toggle="modal" data-target="#login-panel" id="header-login-button" onclick="_gaq.push(['_trackEvent', 'JSMY 2-Login', 'Login button (image) clicked', 'JSMY Landing Page']);return false;">Log In</button></li>
+          <li><button type="submit" class="header-btn btn-link btn-header-signup header-realign" data-toggle="modal" data-target="#signup-panel" id="header-signup-button" onclick="_gaq.push(['_trackEvent', 'JSMY Signup', 'Signup link (Header) clicked', 'JSMY Landing Page']);return false;">Sign Up</button></li>
+          <li><a title="For Employers Malaysia - Log in and post job ads" href="https://www.jobstreet.com.my/employers/" class="header-btn btn-success btn-employers header-realign" id="header-employer-link">Employers </a></li>
         </ul>
       </div>
 
-      <div class="container">
+      <div class="header-container">
         <div class="row">
           <div class="col-12-xs">
-            <button type="submit" id="btn-login-header-small" class="btn btn-login mobile-login btn-block hide" data-toggle="modal" data-target="#login-panel">Log In</button>
+            <button type="submit" id="btn-login-header-small" class="header-btn btn-login mobile-login btn-block hide" data-toggle="modal" data-target="#login-panel">Log In</button>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .collapse {
     display:none
   }
@@ -575,7 +575,7 @@
     padding:0
     10px
   }
-  .btn {
+  .header-btn {
     display:inline-block;
     padding:6px
     12px;
@@ -1336,7 +1336,7 @@
       padding-bottom:48px
     }
     .jumbotron
-    .container {
+    .header-container {
       padding-right:60px;
       padding-left:60px
     }
@@ -1370,28 +1370,28 @@
   .x5 {
     font-size:5em
   }
-  #wrap>.container,#wrap>.container-fluid {
+  #wrap>.header-container,#wrap>.container-fluid {
     padding:10px;
     background:transparent
   }
-  .container,.container-fluid {
+  .header-container,.container-fluid {
     padding-right:10px;
     padding-left:10px;
     margin-right:auto;
     margin-left:auto
   }
   @media(min-width:480px) {
-    .container {
+    .header-container {
       max-width:750px
     }
   }
   @media(min-width:768px) {
-    .container {
+    .header-container {
       max-width:992px
     }
   }
   @media(min-width:1000px) {
-    .container {
+    .header-container {
       max-width:1170px
     }
   }
@@ -2672,7 +2672,7 @@
     }
   }
   @media(min-width:768px) {
-    .container>.navbar-header,.container>.navbar-collapse {
+    .header-container>.navbar-header,.header-container>.navbar-collapse {
       margin-right:0;
       margin-left:0
     }
@@ -2720,11 +2720,11 @@
       margin-right:-15px
     }
   }
-  .container>.navbar-header {
+  .header-container>.navbar-header {
     margin-left:-10px;
     margin-right:-10px
   }
-  .container>.navbar-collapse {
+  .header-container>.navbar-collapse {
     margin-left:-15px;
     margin-right:-15px
   }
@@ -2762,7 +2762,7 @@
     text-decoration:none
   }
   @media(min-width:768px) {
-    .navbar>.container .navbar-brand {
+    .navbar>.header-container .navbar-brand {
       float:right;
       margin:0
       55px 0 0
@@ -3802,14 +3802,14 @@
     solid transparent;
     border-radius:3px
   }
-  .input-group .form-control:first-child,.input-group-addon:first-child,.input-group-btn:first-child>.btn,.input-group-btn:first-child>.btn-group>.btn,.input-group-btn:first-child>.dropdown-toggle,.input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle),.input-group-btn:last-child>.btn-group:not(:last-child)>.btn {
+  .input-group .form-control:first-child,.input-group-addon:first-child,.input-group-btn:first-child>.header-btn,.input-group-btn:first-child>.btn-group>.header-btn,.input-group-btn:first-child>.dropdown-toggle,.input-group-btn:last-child>.header-btn:not(:last-child):not(.dropdown-toggle),.input-group-btn:last-child>.btn-group:not(:last-child)>.header-btn {
     border-top-right-radius:0;
     border-bottom-right-radius:0
   }
   .input-group-addon:first-child {
     border-right:0
   }
-  .input-group .form-control:last-child,.input-group-addon:last-child,.input-group-btn:last-child>.btn,.input-group-btn:last-child>.btn-group>.btn,.input-group-btn:last-child>.dropdown-toggle,.input-group-btn:first-child>.btn:not(:first-child),.input-group-btn:first-child>.btn-group:not(:first-child)>.btn {
+  .input-group .form-control:last-child,.input-group-addon:last-child,.input-group-btn:last-child>.btn,.input-group-btn:last-child>.btn-group>.btn,.input-group-btn:last-child>.dropdown-toggle,.input-group-btn:first-child>.btn:not(:first-child),.input-group-btn:first-child>.btn-group:not(:first-child)>.header-btn {
     border-top-left-radius:0;
     border-bottom-left-radius:0
   }
@@ -3820,14 +3820,14 @@
     position:relative;
     white-space:nowrap
   }
-  .input-group-btn>.btn {
+  .input-group-btn>.header-btn {
     position:relative;
     min-height:34px
   }
-  .input-group-btn>.btn+.btn {
+  .input-group-btn>.header-btn+.header-btn {
     margin-left:-4px!important
   }
-  .input-group-btn>.btn:hover,.input-group-btn>.btn:active {
+  .input-group-btn>.btn:hover,.input-group-btn>.header-btn:active {
     z-index:2
   }
   .input-group-btn.open .dropdown-toggle {
@@ -3838,7 +3838,7 @@
     margin:0
     -1px
   }
-  [data-toggle="buttons"]>.btn>input[type="radio"],[data-toggle="buttons"]>.btn>input[type="checkbox"] {
+  [data-toggle="buttons"]>.header-btn>input[type="radio"],[data-toggle="buttons"]>.header-btn>input[type="checkbox"] {
     display:none
   }
   .input-group-addon:not(:first-child):not(:last-child),.input-group-btn:not(:first-child):not(:last-child),.input-group .form-control:not(:first-child):not(:last-child) {
@@ -3928,11 +3928,11 @@
     margin-top:0;
     text-align:right
   }
-  .modal-footer .btn+.btn {
+  .modal-footer .header-btn+.header-btn {
     margin-bottom:0;
     margin-left:5px
   }
-  .modal-footer .btn-group .btn+.btn {
+  .modal-footer .btn-group .header-btn+.header-btn {
     margin-left:-1px
   }
   .modal-footer .btn-block+.btn-block {
@@ -4079,7 +4079,7 @@
     text-shadow:0 1px 2px rgba(0,0,0,0.6)
   }
   .carousel-caption
-  .btn {
+  .header-btn {
     text-shadow:none
   }
   @media screen and (min-width:768px) {
@@ -4313,11 +4313,11 @@
     border-right-width:0;
     content:""
   }
-  .clearfix:before,.clearfix:after,.container:before,.container:after,.container-fluid:before,.container-fluid:after,.row:before,.row:after,.form-horizontal .form-group:before,.form-horizontal .form-group:after,.btn-toolbar:before,.btn-toolbar:after,.btn-group-vertical>.btn-group:before,.btn-group-vertical>.btn-group:after,.nav:before,.nav:after,.navbar:before,.navbar:after,.navbar-header:before,.navbar-header:after,.navbar-collapse:before,.navbar-collapse:after,.pager:before,.pager:after,.panel-body:before,.panel-body:after,.modal-footer:before,.modal-footer:after {
+  .clearfix:before,.clearfix:after,.header-container:before,.header-container:after,.container-fluid:before,.container-fluid:after,.row:before,.row:after,.form-horizontal .form-group:before,.form-horizontal .form-group:after,.btn-toolbar:before,.btn-toolbar:after,.btn-group-vertical>.btn-group:before,.btn-group-vertical>.btn-group:after,.nav:before,.nav:after,.navbar:before,.navbar:after,.navbar-header:before,.navbar-header:after,.navbar-collapse:before,.navbar-collapse:after,.pager:before,.pager:after,.panel-body:before,.panel-body:after,.modal-footer:before,.modal-footer:after {
     display:table;
     content:" "
   }
-  .clearfix:after,.container:after,.container-fluid:after,.row:after,.form-horizontal .form-group:after,.btn-toolbar:after,.btn-group-vertical>.btn-group:after,.nav:after,.navbar:after,.navbar-header:after,.navbar-collapse:after,.pager:after,.panel-body:after,.modal-footer:after {
+  .clearfix:after,.header-container:after,.container-fluid:after,.row:after,.form-horizontal .form-group:after,.btn-toolbar:after,.btn-group-vertical>.btn-group:after,.nav:after,.navbar:after,.navbar-header:after,.navbar-collapse:after,.pager:after,.panel-body:after,.modal-footer:after {
     clear:both
   }
   .clearfix:after {
@@ -4421,10 +4421,10 @@
   .logo,.logo.my,.logo.sg,.logo.ph,.logo.id,.logo.vn {
     background-size:200px 36px
   }
-  .container>.navbar-header {
+  .header-container>.navbar-header {
     margin-right:0
   }
-  .container>.navbar-collapse {
+  .header-container>.navbar-collapse {
     margin-left:0;
     margin-right:0
   }
@@ -4750,7 +4750,7 @@
     position:absolute;
     overflow:visible
   }
-  #signup-btn.btn {
+  #signup-btn.header-btn {
     font-weight:bold
   }
   .text-error {
