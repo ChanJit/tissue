@@ -191,10 +191,6 @@
     background:transparent;
     text-decoration:none
   }
-  a:hover,a:focus,a:active {
-    outline:0;
-    text-decoration:underline
-  }
   table {
     border-collapse:collapse;
     border-spacing:0

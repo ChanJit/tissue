@@ -1,17 +1,21 @@
 <template>
-    <HorizontalBarChart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']"/>
+    <div>
+        <TabView/>
+    </div>
 </template>
 
 <script>
 import HorizontalBarChart from './components/HorizontalBarChart'
+import TabView from './components/TabView'
+
 export default {
   name: 'DetailPage',
   components: {
-    HorizontalBarChart
+    HorizontalBarChart,
+    TabView
   },
-  data () {
-    return {
-    }
+  data() {
+    return {}
   }
 }
 </script>
