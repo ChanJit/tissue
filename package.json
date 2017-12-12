@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ChanJit/tissue#readme",
   "dependencies": {
-    "vue": "^2.5.9"
+    "vue": "^2.5.9",
+    "vuetify": "^0.17.4"
   }
 }
