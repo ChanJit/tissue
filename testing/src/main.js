@@ -2,9 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import 'hchs-vue-charts/dist/vue-charts.min'
 import App from './App'
 import router from './router'
 
+Vue.use(VueCharts) // eslint-disable-line
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
@@ -13,5 +15,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })
