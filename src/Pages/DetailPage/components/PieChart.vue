@@ -1,18 +1,17 @@
 <template>
-  <chartjs-horizontal-bar 
+  <chartjs-pie
     :option="{
         legend: { display: false },
         scaleShowVerticalLines: false,
         scales: {
             xAxes: [{
-                ticks: {
-                    beginAtZero: true
-                },
+                display: false,
                 gridLines: {
                    drawBorder: false                    
                 }
             }],
             yAxes: [{
+                display: false,
                 gridLines : {
                    display : false,
                 },
@@ -21,13 +20,12 @@
     }"
     :data="data"
     :labels="labels"
-    :backgroundcolor="'#569ad9'" :bordercolor="'#569ad9'"
-  ></chartjs-horizontal-bar>
+  />
 </template>
 
 <script>
 export default {
-  name: 'HorizontalBarChart',
+  name: 'PieChart',
   props: {
     data: {
       type: Array
