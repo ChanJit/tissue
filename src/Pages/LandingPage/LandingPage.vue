@@ -1,13 +1,19 @@
 <template>
-    <InfoContainer header="Having better understanding about the daily cost such as" :items="items" footer="before moving to that area"/>
+    <div>
+        <Search />
+        <InfoContainer header="Having better understanding about the daily cost such as" :items="items" footer="before moving to that area"/>
+    </div>
 </template>
 
 <script>
 import InfoContainer from './components/InfoContainer'
+import Search from './components/Search'
+
 export default {
   name: 'LandingPage',
   components: {
-    InfoContainer
+    InfoContainer,
+    Search
   },
   data() {
     return {

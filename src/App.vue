@@ -1,19 +1,22 @@
 <template>
+  <v-app id="locations">
   <div id="app">
     <sample-header />
     <router-view />
     <sample-footer />
   </div>
+  </v-app>
 </template>
 
 <script>
-import SampleHeader from "./common/Header/Header";
-import SampleFooter from "./common/Footer/Footer";
+import SampleHeader from './common/Header/Header'
+import SampleFooter from './common/Footer/Footer'
 
 export default {
   components: {
     SampleFooter,
-    SampleHeader},
+    SampleHeader
+  },
   name: 'app'
 }
 </script>
