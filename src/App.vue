@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-    <p>welcome to lala land</p>
+    <sample-header />
+    <router-view />
+    <sample-footer />
   </div>
 </template>
 
 <script>
+import SampleHeader from "./common/Header/Header";
+import SampleFooter from "./common/Footer/Footer";
+
 export default {
+  components: {
+    SampleFooter,
+    SampleHeader},
   name: 'app'
 }
 </script>
@@ -19,6 +25,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
