@@ -1,23 +1,25 @@
 <template>
-    <div>
-        <v-app id="search_component">
+    <div id="search_component">
+        <v-app id="locations">
             <div class="search_container">
                 <div class="search_bar">
                     <h1>Cost Of Living</h1>
-                    <!--<h3>Enter description here</h3>-->
-                    <v-form onsubmit="changeLocation()">
-                        <v-select
-                                class="grey--text text--lighten-1 theme--dark flex"
-                                v-bind:items="states"
-                                label="Type in a location to get started"
-                                autocomplete
-                        ></v-select>
-                        <v-btn
-                                @click="submit"
-
-                        >Search
+                    <form>
+                        <v-select v-model="selectedLocation"
+                            ref="selectedLocation"
+                            class="grey--text text--lighten-1 theme--dark flex"
+                            label="Type in a location to get started"
+                            v-bind:items="states"
+                            autocomplete
+                        >
+                            <!--<option v-for="state in locations" v-bind:value="state.value">-->
+                                <!--{{state.name}}-->
+                            <!--</option>-->
+                        </v-select>
+                        <v-btn @click.prevent="changeLocation()">
+                            Search
                         </v-btn>
-                    </v-form>
+                    </form>
 
                 </div>
             </div>
@@ -36,15 +38,17 @@
                         'Kuala Lumpur','Johor Bahru','Petaling Jaya','George Town',
                         'Ipoh','Singapore','Sydney','Melbourne',
                         'Gold Coast'
-                    ]
+                    ],
+                locations: [
+                    {name: 'Kuala Lumpur', value: 'kl'}, {name: 'Ipoh', value: 'ipoh'}
+                ],
+                selectedLocation: ""
             }
         },
         methods: {
-            changeLocation: function(event) {
-
-                console.log("submitted");
-
-
+            changeLocation: function() {
+                this.selectedLocation = this.$refs.selectedLocation.value;
+                console.log(this.selectedLocation);
             }
         }
     }
