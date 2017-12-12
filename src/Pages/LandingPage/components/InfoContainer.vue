@@ -1,12 +1,16 @@
 <template>
-  <div class="container">
+  <div class="container extraTopMargin">
     <h2>{{header}}</h2>
-    <div class="flexContainer">
-      <div v-on:click="goRoute(item)" class="imageItem" v-for="(item) in items" :key="item.name">
-        <img class="circleImg" :src="item.imgSrc" />
-        <div>{{item.name}}</div>
-      </div>
-    </div>
+    <v-container fluid grid-list-md class="extraTopMargin">
+      <v-layout wrap class="spaceAround">
+        <v-flex d-flex xs12 md2 v-for="(item) in items" :key="item.name">
+          <v-flex v-on:click="goRoute(item)" class="imageItem">
+            <img class="circleImg" :src="item.imgSrc" />
+            <v-flex>{{item.name}}</v-flex>
+          </v-flex>
+        </v-flex>
+      </v-layout>
+    </v-container>
     <h2>{{footer}}</h2>
   </div>
 </template>
@@ -71,18 +75,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .container * {
+    padding: 0;
+    margin: 0;
+  }
 .container {
-  width: calc(100% - 64px);
+  width: 100%;
   background-color: white;
   padding: 16px 32px;
 }
-.flexContainer {
-  display: flex;
-  justify-content: center;
-}
 .circleImg {
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   overflow: hidden;
   border-radius: 50%;
   border: 8px solid #2d3092;
@@ -91,10 +95,18 @@ export default {
 .imageItem {
   color: #2c3093;
   font-size: 21px;
-  margin: 2em;
   cursor: pointer;
 }
 h2 {
   color: #5f5e5f;
 }
+  .extraTopMargin {
+    margin-top: 16px;
+  }
+
+  .spaceAround {
+    justify-content: space-between;
+    padding: 0;
+  }
+
 </style>

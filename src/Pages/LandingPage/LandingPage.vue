@@ -2,17 +2,20 @@
     <div>
         <Search />
         <InfoContainer header="Having better understanding about the daily cost such as" :items="items" footer="before moving to that area"/>
+        <carouselContainer header="Discover the enviromentand culture around the area" :items="secondaryItems" footer=""/>
     </div>
 </template>
 
 <script>
 import InfoContainer from './components/InfoContainer'
+import carouselContainer from './components/carouselContainer'
 import Search from './components/Search'
 
 export default {
   name: 'LandingPage',
   components: {
     InfoContainer,
+    carouselContainer,
     Search
   },
   data() {
@@ -42,6 +45,28 @@ export default {
           name: 'Healthcare',
           imgSrc: require('../../assets/medical.jpg'),
           route: '/healthcare'
+        }
+      ],
+      secondaryItems: [
+        {
+          name: 'Traffic Index',
+          imgSrc: require('../../assets/medical.jpg'),
+          route: '/traffic'
+        },
+        {
+          name: 'Pollution Index',
+          imgSrc: require('../../assets/medical.jpg'),
+          route: '/pollution'
+        },
+        {
+          name: 'Culture',
+          imgSrc: require('../../assets/medical.jpg'),
+          route: '/culture'
+        },
+        {
+          name: 'Currency Index',
+          imgSrc: require('../../assets/medical.jpg'),
+          route: '/currency'
         }
       ]
     }
