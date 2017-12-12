@@ -9,7 +9,7 @@
         transition="fade"
         reverseTransition="fade"
       >
-        <v-flex>{{item.name}}</v-flex>
+        <h1>{{item.name}}</h1>
       </v-carousel-item>
     </v-carousel>
     <h2>{{footer}}</h2>
