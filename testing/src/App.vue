@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
-    <p>welcome to lala land</p>
   </div>
 </template>
 
