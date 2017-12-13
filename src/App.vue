@@ -2,6 +2,7 @@
   <v-app id="locations">
   <div id="app">
     <sample-header />
+    <MenuBar ></MenuBar>
     <router-view />
     <sample-footer />
   </div>
@@ -9,13 +10,15 @@
 </template>
 
 <script>
-import SampleHeader from './common/Header/Header'
-import SampleFooter from './common/Footer/Footer'
+import SampleHeader from './common/Header/Header';
+import SampleFooter from './common/Footer/Footer';
+import MenuBar from './common/MenuBar/MenuBar';
 
 export default {
   components: {
     SampleFooter,
-    SampleHeader
+    SampleHeader,
+    MenuBar
   },
   name: 'app'
 }
