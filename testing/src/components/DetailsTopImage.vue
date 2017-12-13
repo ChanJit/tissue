@@ -1,8 +1,8 @@
 <template>
     <div id="detailtopimage_component">
         <v-app id="detailstopimage">
-            <div class="locationdetails_container kl" >
-                <div class="locationdetails">
+            <div id="locationdetails_container kl" >
+                <div id="locationdetails">
                     <div class="locationdetails-center">
                         <div class="descrip">
                             <img class="icon" src="../assets/map-markers.png" height="50" width="50"/>
@@ -29,6 +29,7 @@
 
 <script>
     export default {
+        props: ['float'],
         data () {
             return {
                 location: {name: "Kuala Lumpur", value: "kl"},
@@ -38,14 +39,21 @@
             }
         },
         methods: {
-            //add css class based on location value to change image background
-            //class name = location value
+            addFloat() {
+                const container = document.getElementById("locationdetails");
+                container.className += this.props.float;
+            },
+
+            addCityImage() {
+                const container = document.getElementById("locationdetails_container");
+                container.className += this.location.value;
+            }
         }
     }
 </script>
 
 <style scoped>
-    .locationdetails_container {
+    #locationdetails_container {
         background-position: center;
         background-size: 100%;
         background-repeat: no-repeat;
@@ -53,8 +61,7 @@
         color: #fff;
     }
 
-    .locationdetails {
-        float:right;
+    #locationdetails {
         padding:20px;
         margin-right: 70px;
         height:inherit;
@@ -79,6 +86,14 @@
     .icon {
         margin-right:10px;
         vertical-align: middle;
+    }
+    
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
     }
 
     .kl {
