@@ -1,24 +1,20 @@
 <template>
     <div class="search_container">
-        <div class="search_bar">
+        <div class="search_section">
             <h1>Cost Of Living</h1>
             <form>
-                <v-select 
+                <v-select
                     v-model="selectedLocation"
                     class="grey--text text--lighten-1 theme--dark flex"
                     label="Type in a location to get started"
                     :items="getLocationName"
                     autocomplete
                 >
-                    <!--<option v-for="state in locations" v-bind:value="state.value">-->
-                        <!--{{state.name}}-->
-                    <!--</option>-->
                 </v-select>
                 <v-btn @click.prevent="changeLocation()">
                     Search
                 </v-btn>
             </form>
-
         </div>
     </div>
 </template>
@@ -28,15 +24,13 @@
         name: 'Search',
         data () {
             return {
-                msg: 'Search Location',
-                states:
-                    [
-                        'Kuala Lumpur','Johor Bahru','Petaling Jaya','George Town',
-                        'Ipoh','Singapore','Sydney','Melbourne',
-                        'Gold Coast'
-                    ],
                 locations: [
-                    {name: 'Kuala Lumpur', value: 'kl'}, {name: 'Ipoh', value: 'ipoh'}
+                    {name: 'Kuala Lumpur', value: 'kl'},
+                    {name: 'Johor Bahru', value: 'jb'},
+                    {name: 'Ipoh', value: 'ipoh'},
+                    {name: 'Petaling Jaya', value: 'pj'},
+                    {name: 'Singapore', value: 'singapore'},
+                    {name: 'Sydney', value: 'sydney'},
                 ],
                 selectedLocation: ""
             }
@@ -48,7 +42,7 @@
         },
         computed: {
             getLocationName(){
-                console.log(this.locations)
+                console.log(this.locations);
                 return this.locations.map(val=>val.name)
             }
         }
@@ -60,22 +54,11 @@
     h1, h2 {
         font-weight: normal;
     }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-    a {
-        color: #42b983;
-    }
     .search_container {
+        height:450px;
         background-image: url("../../../assets/taiwan-city-life-wallpaper-2.png");
         background-position: center;
-        height:450px;
-        background-size: 100%;
+        background-size: cover;
         background-repeat: no-repeat;
         padding: 10px;
         color: #fff;
@@ -92,13 +75,13 @@
         font-size:24px;
         font-weight: 400;
     }
-    .search_bar {
+
+    .search_section {
         color: #fff;
         vertical-align: middle;
-        width: 30%;
-        z-index: 2;
         left:0;
         right:0;
         margin: auto;
+        width: 30%;
     }
 </style>

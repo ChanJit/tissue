@@ -4,14 +4,13 @@
             <Search @selectedLocation1="getLocation1" @selectedLocation2="getLocation2"/>
         </div>
         <div v-show=selectedLocation1 class="location left">
-            <DetailsTopImage :float="'right'" :componentId="selectedLocation1"/>
+            <DetailsTopImage :float="'right'" :selectedLocation="selectedLocation1"/>
 
         </div>
         <div v-show=selectedLocation2 class="location right">
-            <DetailsTopImage :float="'right'" :componentId="selectedLocation2"/>
+            <DetailsTopImage :float="'right'" :selectedLocation="selectedLocation2"/>
         </div>
     </div>
-
 </template>
 
 

@@ -1,24 +1,22 @@
 <template>
-    <div id="detailtopimage_component">
-        <div id="locationdetails_container" >
-            <div id="locationdetails">
-                <div class="locationdetails-center">
-                    <div class="descrip">
-                        <img class="icon" src="../../../assets/map-markers.png" height="50" width="50"/>
-                        <label>{{location.name}}</label>
-                    </div>
-                    <div class="descrip">
-                        <img class="icon" src="../../../assets/temperature.png" height="50" width="50"/>
-                        <label>{{temperature.highest}}℃  |  {{temperature.lowest}}℃</label>
-                    </div>
-                    <div class="descrip">
-                        <img class="icon" src="../../../assets/pollution.png" height="50" width="50"/>
-                        <label>{{pollution}}</label>
-                    </div>
-                    <div class="descrip">
-                        <img class="icon" src="../../../assets/traffic-light.png" height="50" width="50"/>
-                        <label>{{traffic}}</label>
-                    </div>
+    <div class="locationdetails_container" :class="selectedLocation" >
+        <div class="locationdetails" :class="float">
+            <div class="locationdetails-center">
+                <div class="descrip">
+                    <img class="icon" src="../../../assets/map-markers.png" height="30" width="30"/>
+                    <label>{{location.name}}</label>
+                </div>
+                <div class="descrip">
+                    <img class="icon" src="../../../assets/temperature.png" height="30" width="30"/>
+                    <label>{{temperature.highest}}℃  |  {{temperature.lowest}}℃</label>
+                </div>
+                <div class="descrip">
+                    <img class="icon" src="../../../assets/pollution.png" height="30" width="30"/>
+                    <label>{{pollution}}</label>
+                </div>
+                <div class="descrip">
+                    <img class="icon" src="../../../assets/traffic-light.png" height="30" width="30"/>
+                    <label>{{traffic}}</label>
                 </div>
             </div>
         </div>
@@ -27,7 +25,7 @@
 
 <script>
     export default {
-        props: ['float'],
+        props: ['float', 'selectedLocation'],
         data () {
             return {
                 location: {name: "Kuala Lumpur", value: "kl"},
@@ -36,40 +34,29 @@
                 traffic: 60,
             }
         },
-        methods: {
-            addFloat() {
-                const container = document.getElementById("locationdetails");
-                container.className += this.float;
-            },
-
-            addCityImage() {
-                const container = document.getElementById("locationdetails_container");
-                container.className += this.location.value;
-            }
-        },
-        mounted() {
-            this.addFloat();
-            this.addCityImage();
-        }
+        methods: {}
     }
 </script>
 
 <style scoped>
-    #locationdetails_container {
+    .locationdetails_container {
         background-position: center;
-        background-size: 100%;
+        background-size: cover;
         background-repeat: no-repeat;
         height:600px;
         color: #fff;
     }
 
-    #locationdetails {
-        padding:20px;
-        margin-right: 70px;
+    .locationdetails {
+        padding: 0 90px;
         height:inherit;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        background: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* Standard syntax (must be last) */
     }
 
     .locationdetails-center {
@@ -78,18 +65,19 @@
     }
 
     .locationdetails-center label {
-        font-size: 40px;
+        font-size: 30px;
         vertical-align: middle;
     }
 
     .descrip {
-        margin:20px 0;
+        margin:50px 0;
+        z-index: 2;
     }
     .icon {
         margin-right:10px;
         vertical-align: middle;
     }
-    
+
     .left {
         float: left;
     }

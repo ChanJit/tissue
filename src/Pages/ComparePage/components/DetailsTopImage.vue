@@ -1,6 +1,6 @@
 <template>
-    <div class="locationdetails_container" :class="this.componentId" >
-        <div class="locationdetails" :class="this.float">
+    <div class="locationdetails_container" :class="selectedLocation" >
+        <div class="locationdetails" :class="float">
             <div class="locationdetails-center">
                 <div class="descrip">
                     <img class="icon" src="../../../assets/map-markers.png" height="30" width="30"/>
@@ -20,14 +20,12 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </template>
 
 <script>
     export default {
-        props: ['float', 'componentId'],
+        props: ['float', 'selectedLocation'],
         data () {
             return {
                 location: {name: "Kuala Lumpur", value: "kl"},
@@ -50,12 +48,15 @@
     }
 
     .locationdetails {
-        padding:20px;
-        margin: 0 70px;
+        padding: 0 90px;
         height:inherit;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        background: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7)); /* Standard syntax (must be last) */
     }
 
     .locationdetails-center {
@@ -75,12 +76,6 @@
     .icon {
         margin-right:10px;
         vertical-align: middle;
-    }
-
-    .bgImage{
-        position: absolute;
-
-
     }
 
     .left {

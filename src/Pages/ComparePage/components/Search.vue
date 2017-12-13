@@ -69,9 +69,9 @@
         font-weight: normal;
     }
     .search_container {
+        height:450px;
         background-image: url("../../../assets/taiwan-city-life-wallpaper-2.png");
         background-position: center;
-        height:450px;
         background-size: 100%;
         background-repeat: no-repeat;
         padding: 10px;
