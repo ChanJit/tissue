@@ -17,26 +17,30 @@
             <v-flex lg3 md12 id="estimationTitle">
               <span class="containerTitle"> Living Expenses Estimation </span>
             </v-flex>
-            <v-flex lg4 md12 class="optionsColumn">
-              <div class="optionsRow">
-                <v-icon class="icon-color" large>date_range</v-icon>
-                <button v-for="option in dateOptions" @click="handleOptionClick(option, 'date')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
-              </div>
-              <div class="optionsRow mt-3">
-                <v-icon class="icon-color" large>home</v-icon>
-                <button v-for="option in homeOptions" @click="handleOptionClick(option, 'home')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
-              </div>
-            </v-flex>
-            <v-flex lg4 md12>
-              <div class="optionsRow">
-                <v-icon class="icon-color" large>drive_eta</v-icon>
-                <button v-for="option in drivingOptions" @click="handleOptionClick(option, 'drive')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
-              </div>
-              <div class="optionsRow mt-3">
-                <v-icon class="icon-color" large>face</v-icon>
-                <button v-for="option in familyOptions" @click="handleOptionClick(option, 'family')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
-              </div>
-             </v-flex>
+              <v-flex lg4 md12 xs12 class="optionsColumn">
+                  <div class="optionsRow">
+                      <v-icon class="icon-color" large>date_range</v-icon>
+                      <button v-for="option in dateOptions" @click="handleOptionClick(option, 'date')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+                      <p class="subtitle">Time frame</p>
+                  </div>
+                  <div class="optionsRow mt-3">
+                      <v-icon class="icon-color" large>home</v-icon>
+                      <button v-for="option in homeOptions" @click="handleOptionClick(option, 'home')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+                      <p class="subtitle">Accommodation expenses</p>
+                  </div>
+              </v-flex>
+              <v-flex lg4 md12 xs12>
+                  <div class="optionsRow">
+                      <v-icon class="icon-color" large>drive_eta</v-icon>
+                      <button v-for="option in drivingOptions" @click="handleOptionClick(option, 'drive')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+                      <p class="subtitle">Transport expenses</p>
+                  </div>
+                  <div class="optionsRow mt-3">
+                      <v-icon class="icon-color" large>face</v-icon>
+                      <button v-for="option in familyOptions" @click="handleOptionClick(option, 'family')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+                      <p class="subtitle">Family status</p>
+                  </div>
+              </v-flex>
            </v-layout>
          </v-container>
       <v-divider ></v-divider>
@@ -277,5 +281,11 @@ export default {
       background-color: #2d3092 !important;
       color: white;
       border: 1px solid #2d3092;
+    }
+
+    .subtitle {
+        font-style: italic;
+        font-size: 12px;
+        color: grey;
     }
 </style>
