@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-lg class="extraTopMargin">
     <v-flex class="extraTopMargin">
-      <DetailsTopImage></DetailsTopImage>
+      <DetailsTopImage :float="'right'" :selectedLocation="'kl'"></DetailsTopImage>
     </v-flex>
     <v-layout row wrap>
       <v-container grid-list-md text-xs-center icons>
