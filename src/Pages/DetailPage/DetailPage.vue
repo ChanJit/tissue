@@ -13,20 +13,24 @@
             <div class="optionsRow">
               <v-icon class="icon-color" large>date_range</v-icon>
               <button v-for="option in dateOptions" @click="handleOptionClick(option, 'date')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+              <p class="subtitle">Time frame</p>
             </div>
             <div class="optionsRow mt-3">
               <v-icon class="icon-color" large>home</v-icon>
               <button v-for="option in homeOptions" @click="handleOptionClick(option, 'home')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+              <p class="subtitle">Accommodation expenses</p>
             </div>
           </v-flex>
           <v-flex lg4 md12 xs12>
             <div class="optionsRow">
               <v-icon class="icon-color" large>drive_eta</v-icon>
               <button v-for="option in drivingOptions" @click="handleOptionClick(option, 'drive')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+              <p class="subtitle">Transport expenses</p>
             </div>
             <div class="optionsRow mt-3">
               <v-icon class="icon-color" large>face</v-icon>
               <button v-for="option in familyOptions" @click="handleOptionClick(option, 'family')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
+              <p class="subtitle">Family status</p>
             </div>
           </v-flex>
         </v-layout>
@@ -186,6 +190,7 @@ export default {
     handleOptionClick(option, type) {
       switch (type) {
         case 'date':
+
           this.dateOptions.find(opt => opt.enabled == true).enabled = false
           this.selected.dateOption = option
           break
@@ -205,6 +210,9 @@ export default {
       option.enabled = !option.enabled
       this.calculate();
     },
+      getDescription(){
+
+      },
     getCountry() {
       let countryParam = this.$route.params.country
       this.locale.country =
@@ -430,5 +438,11 @@ export default {
 }
 .extraTopMargin {
   margin-top: 18px;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 12px;
+  color: grey;
 }
 </style>
