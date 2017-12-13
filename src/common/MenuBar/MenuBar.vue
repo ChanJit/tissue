@@ -3,9 +3,12 @@
     <v-tabs-bar color="lighten-4">
       <v-tabs-slider color="indigo darken-4"></v-tabs-slider>
       <v-tabs-item class="menuBar-link" to="/">
-        Overview
+        Home
       </v-tabs-item>
       <v-tabs-item class="menuBar-link" to="/details">
+        Overview
+      </v-tabs-item>
+      <v-tabs-item class="menuBar-link" to="/compare">
        Location Compare
       </v-tabs-item>
       <v-tabs-item href="#tab-3" v-on:click='redirectToJS'>
