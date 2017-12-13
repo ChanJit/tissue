@@ -1,8 +1,9 @@
 <template>
-  <v-container fluid grid-list-lg class="extraTopMargin">
-    <v-flex class="extraTopMargin">
+  <div class="extraTopMargin">
+    <div class="location">
       <DetailsTopImage :locale="locale"  :float="'right'" :selectedLocation="'kl'"></DetailsTopImage>
-    </v-flex>
+    </div>
+  <v-container fluid grid-list-lg class="extraTopMargin">
     <v-layout row wrap>
       <v-container grid-list-md text-xs-center icons>
         <v-layout row wrap class="layoutWrapper">
@@ -51,6 +52,7 @@
       </v-flex>
     </v-layout>
   </v-container>
+  </div>
 </template>
 
 <script>
