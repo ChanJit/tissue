@@ -40,14 +40,10 @@
            </v-layout>
          </v-container>
       <v-divider ></v-divider>
-      <v-layout wrap>
-        <div v-show=selectedLocation2 >
-          <pie-chart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']" class="location"></pie-chart>
-        </div>
-        <div v-show=selectedLocation2>
-          <pie-chart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']" class="location"></pie-chart>
-        </div>
-      </v-layout>
+      <v-flex d-flex v-show=selectedLocation2 >
+        <pie-chart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']" class="location"></pie-chart>
+        <pie-chart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']" class="location"></pie-chart>
+      </v-flex>
 
       <v-layout v-show=selectedLocation2 wrap>
         <cost-details :items="costDetailData" :dateMode="selected.dateOption" class="location"></cost-details>
