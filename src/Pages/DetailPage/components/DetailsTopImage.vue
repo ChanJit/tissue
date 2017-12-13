@@ -19,7 +19,7 @@
                     <label>{{traffic}}</label>
                 </div>
                 <div class="descrip">
-                        <label><strong id="jobCount">{{jobCounts}}</strong> jobs available </label>
+                        <a id="jobCountText" target="_blank" :href="stateJobProfile.link"><label><strong>{{stateJobProfile.jobCounts}}</strong> jobs available </label></a>
                     </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { getStateTotalJobs } from '../../../data/api';
+import { getStateJobProfile } from '../../../data/api';
     export default {
         props: ['float', 'locale', 'selectedLocation'],
         data () {
@@ -36,22 +36,33 @@ import { getStateTotalJobs } from '../../../data/api';
                 temperature: {highest:30, lowest:20},
                 pollution: 40,
                 traffic: 60,
-                jobCounts: 0,
+                stateJobProfile: {
+                    jobCounts: "",
+                    link: ""
+                },
+
             }
         },
         methods: {
-            getTotalJobsCount(){
-                const jobCounts = getStateTotalJobs(this.locale.country, this.locale.state); 
-                this.jobCounts = jobCounts;
+            getTotalJobsProfile(){
+                const profile = getStateJobProfile(this.locale.country, this.locale.state); 
+                this.stateJobProfile.jobCounts = profile['Job Count'];
+                this.stateJobProfile.link = profile['Link to job'];
+                console.log(this.stateJobProfile);
             }
         },
         mounted() {
-            this.getTotalJobsCount();
+            this.getTotalJobsProfile();
         }
     }
 </script>
 
 <style scoped>
+    #jobCountText{
+        color: white;
+        cursor: pointer;
+    }
+
     .locationdetails_container {
         background-position: center;
         background-size: cover;

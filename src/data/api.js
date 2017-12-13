@@ -152,14 +152,14 @@ export const getStates = country => {
   return states
 }
 
-export const getStateTotalJobs = (country, state) => {
+export const getStateJobProfile = (country, state) => {
   let stateProfile = jobs.find(job => {
     if(job['Country'] == country && job['City name'] == state){
       return job;
     }
   })
 
-  return stateProfile['Job Count'];
+  return stateProfile;
 
 }
 

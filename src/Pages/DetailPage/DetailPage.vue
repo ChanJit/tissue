@@ -6,10 +6,10 @@
     <v-layout row wrap>
       <v-container grid-list-md text-xs-center icons>
         <v-layout row wrap class="layoutWrapper">
-          <v-flex lg3 md12 id="estimationTitle">
+          <v-flex lg3 md12 xs12 id="estimationTitle">
             <span class="containerTitle"> Living Expenses Estimation </span>
           </v-flex>
-          <v-flex lg4 md12 class="optionsColumn">
+          <v-flex lg4 md12 xs12 class="optionsColumn">
             <div class="optionsRow">
               <v-icon class="icon-color" large>date_range</v-icon>
               <button v-for="option in dateOptions" @click="handleOptionClick(option, 'date')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
@@ -19,7 +19,7 @@
               <button v-for="option in homeOptions" @click="handleOptionClick(option, 'home')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
             </div>
           </v-flex>
-          <v-flex lg4 md12>
+          <v-flex lg4 md12 xs12>
             <div class="optionsRow">
               <v-icon class="icon-color" large>drive_eta</v-icon>
               <button v-for="option in drivingOptions" @click="handleOptionClick(option, 'drive')" :class="{ active: option.enabled, optionButton: true }">{{option.name}}</button>
