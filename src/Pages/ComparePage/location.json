@@ -1,0 +1,8 @@
+[
+  {"name": "Kuala Lumpur", "country": "Malaysia", "value": "kl"},
+  {"name": "Johor Bahru", "country": "Malaysia", "value": "jb"},
+  {"name": "Ipoh", "country": "Malaysia", "value": "ipoh"},
+  {"name": "Petaling Jaya", "country": "Malaysia", "value": "pj"},
+  {"name": "Singapore", "country": "Singapore", "value": "singapore"},
+  {"name": "Sydney", "country": "Australia", "value": "sydney"}
+]

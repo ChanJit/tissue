@@ -112,7 +112,7 @@ export const getLivingCost = (country, state) => {
       }
     }
   } else if (country && !state) {
-    delete livingCost[country].child
+    // delete livingCost[country].child
     response = livingCost[country]
   }
 
@@ -120,15 +120,17 @@ export const getLivingCost = (country, state) => {
     let responseData = {}
     for (let i in response) {
       responseData[i] = []
-      for (let u of response[i]) {
-        responseData[i].push({
-          text: u[0],
-          currency: u[1].slice(-2),
-          price: parseFloat(
-            u[1].replace(',', '').substring(0, u[1].length - 2)
-          ),
-          range: u[2].trim()
-        })
+      if (Array.isArray(response[i])) {
+        for (let u of response[i]) {
+          responseData[i].push({
+            text: u[0],
+            currency: u[1].slice(-2),
+            price: parseFloat(
+              u[1].replace(',', '').substring(0, u[1].length - 2)
+            ),
+            range: u[2].trim()
+          })
+        }
       }
     }
     response = responseData
@@ -155,7 +157,7 @@ export const getStates = country => {
 
 export const getStateJobProfile = (country, state) => {
   let stateProfile = jobs.find(job => {
-    if (job['Country'] === country && job['City name'].indexOf(state)>=0) {
+    if (job['Country'] === country && job['City name'].indexOf(state) >= 0) {
       return job
     }
   })
