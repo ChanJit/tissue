@@ -32,4 +32,8 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+  .extraTopMargin {
+    margin-top: 18px;
+  }
 </style>

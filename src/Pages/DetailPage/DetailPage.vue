@@ -180,7 +180,7 @@ export default {
           (this.drivingOptions.find(opt => opt.enabled == true)).enabled = false;
           this.selected.drivingOption = option;
           break;
-        case "family": 
+        case "family":
           (this.familyOptions.find(opt => opt.enabled == true)).enabled = false;
           this.selected.familyOption = option;
           break;
@@ -238,7 +238,7 @@ export default {
 
 .optionsContainer{
   text-align: left;
-} 
+}
 
 .optionButton{
   margin: 5px;
@@ -262,8 +262,5 @@ export default {
   background-color: #2d3092 !important;
   color: white;
   border: 1px solid #2d3092;
-} 
-.extraTopMargin {
-  margin-top: 18px;
 }
 </style>
