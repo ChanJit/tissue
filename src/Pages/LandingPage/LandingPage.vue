@@ -1,9 +1,11 @@
 <template>
-    <div>
+    <v-layout row wrap class="extraTopMargin">
+      <v-flex>
         <Search />
         <InfoContainer header="Having better understanding about the daily cost such as" :items="items" footer="before moving to that area"/>
-        <carouselContainer header="Discover the enviromentand culture around the area" :items="secondaryItems" footer=""/>
-    </div>
+        <InfoContainer header="Discover the enviromentand culture around the area" :items="secondaryItems" footer=""/>
+      </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -50,22 +52,22 @@ export default {
       secondaryItems: [
         {
           name: 'Traffic Index',
-          imgSrc: require('../../assets/medical.jpg'),
+          imgSrc: require('../../assets/traffic.jpg'),
           route: '/traffic'
         },
         {
           name: 'Pollution Index',
-          imgSrc: require('../../assets/medical.jpg'),
+          imgSrc: require('../../assets/pollution.jpg'),
           route: '/pollution'
         },
         {
           name: 'Culture',
-          imgSrc: require('../../assets/medical.jpg'),
+          imgSrc: require('../../assets/culture.jpg'),
           route: '/culture'
         },
         {
           name: 'Currency Index',
-          imgSrc: require('../../assets/medical.jpg'),
+          imgSrc: require('../../assets/currency.jpg'),
           route: '/currency'
         }
       ]
@@ -76,5 +78,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .extraTopMargin {
+    margin-top: 18px;
+  }
 </style>
