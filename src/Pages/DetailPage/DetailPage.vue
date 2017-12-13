@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-lg class="extraTopMargin">
     <v-flex class="extraTopMargin">
-      <DetailsTopImage></DetailsTopImage>
+      <DetailsTopImage :locale="locale"></DetailsTopImage>
     </v-flex>
     <v-layout row wrap>
       <v-container grid-list-md text-xs-center icons>
@@ -54,6 +54,7 @@ import PieChart from './components/PieChart'
 import CostDetails from './components/CostDetails'
 import TabView from './components/TabView'
 import DetailsTopImage from './components/DetailsTopImage'
+import * as api from '../../data/api'
 
 export default {
   name: 'DetailPage',
@@ -68,9 +69,12 @@ export default {
     this.selected.homeOption = this.homeOptions.find(opt => opt.enabled == true);
     this.selected.drivingOption = this.drivingOptions.find(opt => opt.enabled == true);
     this.selected.familyOption = this.familyOptions.find(opt => opt.enabled == true);
+    this.getCountry();
+    this.getState();
   },
   data () {
     return {
+      locale: {state: "", country:""},
       expensePrice: 1000.00,
       selected: {
         dateOption: "",
@@ -186,6 +190,25 @@ export default {
           break;
       }
       option.enabled = !option.enabled;
+    },
+    getCountry(){
+      let countryParam = this.$route.params.country;
+      this.locale.country = countryParam.charAt(0).toUpperCase() + countryParam.slice(1);
+    },
+    getState(){
+      let stateParam = this.$route.params.state;
+      var state = '';
+      if(stateParam){     //construct the state string
+        let stateChars = stateParam.split("-");
+        stateChars.forEach(char => {
+          let capitalized = char.charAt(0).toUpperCase() + char.slice(1);
+          capitalized += " ";
+          state += capitalized;
+      });
+      //remove empty space
+        state = state.slice(0, -1);
+        this.locale.state = state;
+      }
     }
   },
 }

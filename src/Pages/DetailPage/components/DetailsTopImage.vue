@@ -19,6 +19,9 @@
                         <img class="icon" src="../../../assets/traffic-light.png" height="50" width="50"/>
                         <label>{{traffic}}</label>
                     </div>
+                    <div class="descrip">
+                        <label><strong id="jobCount">{{jobCounts}}</strong> jobs available in {{locale.state}}</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,14 +29,16 @@
 </template>
 
 <script>
+import { getStateTotalJobs } from '../../../data/api';
     export default {
-        props: ['float'],
+        props: ['float', 'locale'],
         data () {
             return {
                 location: {name: "Kuala Lumpur", value: "kl"},
                 temperature: {highest:30, lowest:20},
                 pollution: 40,
                 traffic: 60,
+                jobCounts: 0,
             }
         },
         methods: {
@@ -41,20 +46,28 @@
                 const container = document.getElementById("locationdetails");
                 container.className += this.float;
             },
-
             addCityImage() {
                 const container = document.getElementById("locationdetails_container");
                 container.className += this.location.value;
+            },
+            getTotalJobsCount(){
+                const jobCounts = getStateTotalJobs(this.locale.country, this.locale.state); 
+                this.jobCounts = jobCounts;
             }
         },
         mounted() {
             this.addFloat();
             this.addCityImage();
+            this.getTotalJobsCount();
         }
     }
 </script>
 
 <style scoped>
+    #jobCount{
+
+    }
+
     #locationdetails_container {
         background-position: center;
         background-size: 100%;

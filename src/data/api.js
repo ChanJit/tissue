@@ -1,6 +1,7 @@
 let healthcare = require('./healthcare.json')
 let pollution = require('./pollution.json')
 let results = require('./results.json')
+let jobs = require('./jobscount.json')
 
 export const getPollution = (country, state) => {
   let pollutionObj = {}
@@ -149,5 +150,16 @@ export const getStates = country => {
     if (i) states.push(i)
   }
   return states
+}
+
+export const getStateTotalJobs = (country, state) => {
+  let stateProfile = jobs.find(job => {
+    if(job['Country'] == country && job['City name'] == state){
+      return job;
+    }
+  })
+
+  return stateProfile['Job Count'];
+
 }
 
