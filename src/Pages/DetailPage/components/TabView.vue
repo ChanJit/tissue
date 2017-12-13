@@ -29,7 +29,7 @@
         <v-card flat>
             <div class="container">
                 <v-layout row justify-space-between>
-                    <v-flex headline xs2 offset-xs5>
+                    <v-flex headline xs2 offset-xs6>
                         Between
                     </v-flex>
                     <v-flex headline xs2>
