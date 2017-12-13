@@ -3,7 +3,7 @@
         <div class="search_section">
             <h1>Compare between two locations</h1>
             <form>
-                <v-select 
+                <v-select :if=selectedLocation1
                     v-model="selectedLocation1"
                     class="grey--text text--lighten-1 theme--dark flex search_bar"
                     label="Type in a location to get started"
@@ -13,13 +13,13 @@
                 >
                 </v-select>
                 <h2>and</h2>
-                <v-select
-                        v-model="selectedLocation2"
-                        class="grey--text text--lighten-1 theme--dark flex search_bar"
-                        label="Type in a location to get started"
-                        :items="getLocationName"
-                        :on-change="checkLocation()"
-                        autocomplete
+                <v-select :if=selectedLocation2
+                    v-model="selectedLocation2"
+                    class="grey--text text--lighten-1 theme--dark flex search_bar"
+                    label="Type in a location to get started"
+                    :items="getLocationName"
+                    :on-change="checkLocation()"
+                    autocomplete
                 >
                 </v-select>
             </form>
@@ -48,12 +48,15 @@
             checkLocation: function() {
                 if (this.selectedLocation1 && this.selectedLocation2){
                     console.log("Load data");
+                    const loc1 = this.locations.find(val=>val.name===this.selectedLocation1);
+                    const loc2 = this.locations.find(val=>val.name===this.selectedLocation2);
+                    this.$emit('selectedLocation1',loc1.value);
+                    this.$emit('selectedLocation2',loc2.value);
                 }
             }
         },
         computed: {
             getLocationName(){
-                console.log(this.locations)
                 return this.locations.map(val=>val.name)
             }
         }
@@ -109,6 +112,4 @@
         display: inline-block;
         vertical-align: middle;
     }
-
-
 </style>
