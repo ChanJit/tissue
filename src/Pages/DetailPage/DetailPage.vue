@@ -1,5 +1,8 @@
 <template>
-  <v-container fluid grid-list-lg>
+  <v-container fluid grid-list-lg class="extraTopMargin">
+    <v-flex class="extraTopMargin">
+      <DetailsTopImage></DetailsTopImage>
+    </v-flex>
     <v-layout row wrap>
       <v-container grid-list-md text-xs-center icons>
         <v-layout row wrap class="layoutWrapper">
@@ -50,13 +53,15 @@
 import PieChart from './components/PieChart'
 import CostDetails from './components/CostDetails'
 import TabView from './components/TabView'
+import DetailsTopImage from './components/DetailsTopImage'
 
 export default {
   name: 'DetailPage',
   components: {
     PieChart,
     CostDetails,
-    TabView
+    TabView,
+    DetailsTopImage
   },
   created(){
     this.selected.dateOption = this.dateOptions.find(opt => opt.enabled == true);
@@ -258,4 +263,7 @@ export default {
   color: white;
   border: 1px solid #2d3092;
 } 
+.extraTopMargin {
+  margin-top: 18px;
+}
 </style>
