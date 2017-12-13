@@ -29,18 +29,18 @@
         <v-card flat>
             <div class="container">
                 <v-layout row justify-space-between>
-                    <v-flex headline xs2 offset-xs6>
-                        Between
+                    <v-flex headline xs2>
+                        LOCATION_1
                     </v-flex>
                     <v-flex headline xs2>
-                        Average cost
+                        LOCATION_2
                     </v-flex>
                 </v-layout>
                 <v-layout class="mt-3" v-for="item of items" :key="item.name" row justify-space-between>
-                    <v-flex title xs4 >
+                    <v-flex title xs2 >
                         {{item.name}}
                     </v-flex>
-                    <v-flex title xs2 >
+                    <v-flex title xs4 >
                         {{item.between}}
                     </v-flex>
                     <v-flex title xs2 offset-xs0>
@@ -56,41 +56,30 @@
 
 <script>
 export default {
-  name: 'TabView',
+  name: 'TabView2',
   props: {},
   data() {
     return {
       tab: 'tab-1',
-      text: '',
-      headers: [
-        {
-          text: '',
-          align: 'left',
-          sortable: false,
-          value: 'name'
-        },
-        {text: 'Between', value: 'between', sortable: false},
-        {text: 'Average cost', value: 'average', sortable: false}
-      ],
       items: [
         {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
+          between: 'One-way Ticket (Local Transportation)',
+          name: '2.00 - 3.00',
           average: '2.5'
         },
         {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
+          between: 'One-way Ticket (Local Transportation)',
+          name: '2.00 - 3.00',
           average: '2.5'
         },
         {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
+          between: 'One-way Ticket (Local Transportation)',
+          name: '2.00 - 3.00',
           average: '2.5'
         },
         {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
+          between: 'One-way Ticket (Local Transportation)',
+          name: '2.00 - 3.00',
           average: '2.5'
         }
       ]
@@ -102,7 +91,7 @@ export default {
         {
           name: 'One-way Ticket (Local Transportation)',
           between: '2.00 - 3.00',
-          average: '5'
+          average: '5123'
         },
         {
           name: 'One-way Ticket (Local Transportation)',

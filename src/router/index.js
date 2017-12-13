@@ -21,6 +21,16 @@ export default new Router({
       component: DetailPage
     },
     {
+      path: '/details/:country',
+      name: 'DetailPage',
+      component: DetailPage
+    },
+    {
+      path: '/details/:country/:state',
+      name: 'DetailPage',
+      component: DetailPage
+    },
+    {
       path: '/compare',
       name: 'ComparePage',
       component: ComparePage
