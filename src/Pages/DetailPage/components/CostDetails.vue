@@ -1,5 +1,5 @@
 <template>
-  <v-container row class="costDetailsContainer">
+  <v-flex row class="costDetailsContainer">
     <div class="containerTitle"> Estimated {{dateMode.name}} Cost </div>
     <div class="subtitle">below are rough estimation of your {{dateMode.name.toLowerCase()}} expenses on average, it would be varied for everyone</div>
     <h2 class="totalExpense">RM {{totalExpenses}}</h2>
@@ -11,7 +11,7 @@
         </v-layout>
       </div>
     </template>
-  </v-container>
+  </v-flex>
 </template>
 
 <script>

@@ -40,8 +40,14 @@
            </v-layout>
          </v-container>
       <v-divider ></v-divider>
-      <v-layout v-show=selectedLocation2 row wrap>
-          <PieChart></PieChart>
+      <v-flex d-flex v-show=selectedLocation2 >
+        <pie-chart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']" class="location"></pie-chart>
+        <pie-chart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']" class="location"></pie-chart>
+      </v-flex>
+
+      <v-layout v-show=selectedLocation2 wrap>
+        <cost-details :items="costDetailData" :dateMode="selected.dateOption" class="location"></cost-details>
+        <cost-details :items="costDetailData" :dateMode="selected.dateOption" class="location"></cost-details>
       </v-layout>
     </div>
 </template>
@@ -50,13 +56,15 @@
 import Search from './components/Search'
 import DetailsTopImage from './components/DetailsTopImage'
 import PieChart from '../DetailPage/components/PieChart'
+import CostDetails from '../DetailPage/components/CostDetails'
 
 export default {
     name: 'ComparePage',
     components: {
         Search,
         DetailsTopImage,
-        PieChart
+        PieChart,
+        CostDetails
     },
     created(){
       this.selected.dateOption = this.dateOptions.find(opt => opt.enabled == true);
