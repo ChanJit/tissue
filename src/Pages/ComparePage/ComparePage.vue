@@ -247,7 +247,7 @@ export default {
       text-align: center;
     }
 
-    .icon-color{
+    .icon-color, .optionsRow .icon-color{
       color: #2d3092;
     }
 

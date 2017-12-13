@@ -4,7 +4,7 @@
             <div class="locationdetails-center">
                 <div class="descrip">
                     <img class="icon" src="../../../assets/map-markers.png" height="30" width="30"/>
-                    <label>{{location.name}}</label>
+                    <label>{{locale.state}}</label>
                 </div>
                 <div class="descrip">
                     <img class="icon" src="../../../assets/temperature.png" height="30" width="30"/>
@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import { getStateJobProfile } from '../../../data/api';
+import * as api from '../../../data/api';
     export default {
         props: ['float', 'locale', 'selectedLocation'],
         data () {
             return {
                 location: {name: "Kuala Lumpur", value: "kl"},
                 temperature: {highest:30, lowest:20},
-                pollution: 40,
+                pollution: "",
                 traffic: 60,
                 stateJobProfile: {
                     jobCounts: "",
@@ -45,14 +45,50 @@ import { getStateJobProfile } from '../../../data/api';
         },
         methods: {
             getTotalJobsProfile(){
-                const profile = getStateJobProfile(this.locale.country, this.locale.state); 
+                const profile = api.getStateJobProfile(this.locale.country, this.locale.state); 
                 this.stateJobProfile.jobCounts = profile['Job Count'];
                 this.stateJobProfile.link = profile['Link to job'];
-                console.log(this.stateJobProfile);
+            },
+            getPollutionData(){
+                const data = api.getPollution(this.locale.country, this.location.state);
+                this.pollution = data[0].level;
+            },
+            getTrafficData(){
+                console.log(this.locale.country);
+                switch(this.locale.country){
+                    case "Malaysia":
+                        this.traffic = 192.35
+                        break;
+                    case "Singapore":
+                        this.traffic = 177.62
+                        break;
+                    case "Australia":
+                        this.traffic = 	183.17
+                        break;
+                }
+            },
+            getTemperatureData(){
+                switch(this.locale.country){
+                    case "Malaysia":
+                        this.temperature.highest = "32";
+                        this.temperature.lowest = "23";
+                        break;
+                    case "Singapore":
+                        this.temperature.highest = "28";
+                        this.temperature.lowest = "24";
+                        break;
+                    case "Australia":
+                        this.temperature.highest = "34";
+                        this.temperature.lowest = "10";
+                        break;
+                }
             }
         },
         mounted() {
             this.getTotalJobsProfile();
+            this.getPollutionData();
+            this.getTrafficData();
+            this.getTemperatureData();
         }
     }
 </script>

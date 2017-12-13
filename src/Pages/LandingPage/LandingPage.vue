@@ -3,7 +3,7 @@
       <v-flex>
         <Search />
         <InfoContainer header="Having better understanding about the daily cost such as" :items="items" footer="before moving to that area"/>
-        <InfoContainer header="Discover the enviromentand culture around the area" :items="secondaryItems" footer=""/>
+        <InfoContainer header="Discover the environment and culture around the area" :items="secondaryItems" footer=""/>
       </v-flex>
     </v-layout>
 </template>

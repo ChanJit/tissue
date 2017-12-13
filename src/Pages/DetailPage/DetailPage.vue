@@ -173,7 +173,8 @@ export default {
       let arr = []
       if (this.data)
         for (let i in this.data.price) {
-          arr.push(this.data.price[i])
+          if(this.data.price[i])
+            arr.push(this.data.price[i])
         }
       return arr
     },
@@ -181,7 +182,8 @@ export default {
       let arr = []
       if (this.data)
         for (let i in this.data.price) {
-          arr.push(i)
+          if(this.data.price[i])
+           arr.push(i)
         }
       return arr
     }
@@ -285,7 +287,7 @@ export default {
           }
           break
         default:
-          this.data.price.home = 0
+          this.data.price.property = 0
           break
       }
 

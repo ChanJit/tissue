@@ -5,9 +5,6 @@
       <v-tabs-item class="menuBar-link" to="/">
         Home
       </v-tabs-item>
-      <v-tabs-item class="menuBar-link" to="/details">
-        Overview
-      </v-tabs-item>
       <v-tabs-item class="menuBar-link" to="/compare">
        Location Compare
       </v-tabs-item>
@@ -29,7 +26,7 @@
     },
     methods: {
       redirectToJS: function(event) {
-        window.location.href = "https://www.jobstreet.com.my/en/job-search/job-vacancy.php?key=Account+Executive&location=50300&specialization=131&area=&salary=&ojs=3&src=12";
+        window.location.href = `https://www.jobstreet.com.my/en/job-search/job-vacancy.php${this.$route.params.state ? '?key='+this.$route.params.state : ''}`;
       }
     }
   }

@@ -4,12 +4,22 @@
             <h1>Cost Of Living</h1>
             <form>
                 <v-select
+                    label="Select"
+                    :items="states"
                     v-model="selectedLocation"
                     class="grey--text text--lighten-1 theme--dark flex"
-                    label="Type in a location to get started"
-                    :items="getLocationName"
+                    item-text="name"
+                    item-value="url"
                     autocomplete
-                >
+                    >
+                    <template slot="item" slot-scope="data">
+                        <template>
+                        <v-list-tile-content>
+                            <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
+                            <v-list-tile-sub-title v-html="data.item.group"></v-list-tile-sub-title>
+                        </v-list-tile-content>
+                        </template>
+                    </template>
                 </v-select>
                 <v-btn @click.prevent="changeLocation()">
                     Search
@@ -20,31 +30,44 @@
 </template>
 
 <script>
+import * as api from '../../../data/api'
     export default {
         name: 'Search',
         data () {
             return {
                 locations: [
-                    {name: 'Kuala Lumpur', value: 'kl'},
-                    {name: 'Johor Bahru', value: 'jb'},
-                    {name: 'Ipoh', value: 'ipoh'},
-                    {name: 'Petaling Jaya', value: 'pj'},
-                    {name: 'Singapore', value: 'singapore'},
-                    {name: 'Sydney', value: 'sydney'},
+                    { header: 'Malaysia'},
+                    {name: 'Kuala Lumpur', group: "Malaysia", value: 'kl'},
+                    {name: 'Johor Bahru', group: "Malaysia", value: 'jb'},
+                    {name: 'Ipoh', group: "Malaysia", value: 'ipoh'},
+                    {name: 'Petaling Jaya', group: "Malaysia", value: 'pj'},
+                    {name: 'Singapore', group: "Malaysia", value: 'singapore'},
+                    { header: 'Australia'},
+                    {name: 'Sydney', group: "Australia", value: 'sydney'},
                 ],
+                states: [],
+                countries: [ "Malaysia", "Singapore", "Australia"],
                 selectedLocation: ""
             }
         },
         methods: {
-            changeLocation: function() {
-                console.log(this.selectedLocation);
+            getStates: function(){
+                this.countries.forEach(country => {
+                    let data = api.getStates(country);
+                    this.states.push({header: country});
+                    data.forEach(state => {
+                        let formmatedState = state.replace(" ", "-").toLowerCase();
+                        this.states.push({name: state, group: country, url: `${country.toLowerCase()}/${formmatedState}`});
+                    });
+                });
+                console.log(this.states);
+            },
+            changeLocation: function(){
+                this.$router.push(`/details/${this.selectedLocation}`);
             }
         },
-        computed: {
-            getLocationName(){
-                console.log(this.locations);
-                return this.locations.map(val=>val.name)
-            }
+        created(){
+            this.getStates();
         }
     }
 </script>
