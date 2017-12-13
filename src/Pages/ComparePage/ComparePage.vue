@@ -3,11 +3,11 @@
         <div>
             <Search @selectedLocation1="getLocation1" @selectedLocation2="getLocation2"/>
         </div>
-        <div class="location left">
+        <div v-show=selectedLocation1 class="location left">
             <DetailsTopImage :float="'right'" :componentId="selectedLocation1"/>
 
         </div>
-        <div class="location right">
+        <div v-show=selectedLocation2 class="location right">
             <DetailsTopImage :float="'right'" :componentId="selectedLocation2"/>
         </div>
     </div>

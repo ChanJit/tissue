@@ -3,7 +3,7 @@
         <div class="search_section">
             <h1>Compare between two locations</h1>
             <form>
-                <v-select :if=selectedLocation1
+                <v-select
                     v-model="selectedLocation1"
                     class="grey--text text--lighten-1 theme--dark flex search_bar"
                     label="Type in a location to get started"
@@ -13,7 +13,7 @@
                 >
                 </v-select>
                 <h2>and</h2>
-                <v-select :if=selectedLocation2
+                <v-select
                     v-model="selectedLocation2"
                     class="grey--text text--lighten-1 theme--dark flex search_bar"
                     label="Type in a location to get started"
