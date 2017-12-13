@@ -5,9 +5,6 @@
       <v-tabs-item class="menuBar-link" to="/">
         Home
       </v-tabs-item>
-      <v-tabs-item class="menuBar-link" to="/details">
-        Overview
-      </v-tabs-item>
       <v-tabs-item class="menuBar-link" to="/compare">
        Location Compare
       </v-tabs-item>
