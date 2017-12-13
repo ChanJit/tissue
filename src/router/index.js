@@ -4,6 +4,7 @@ import HelloWorld from '@/Pages/Styles/components/HelloWorld'
 import LandingPage from '@/Pages/LandingPage/LandingPage'
 import DetailPage from '@/Pages/DetailPage/DetailPage'
 import ComparePage from '@/Pages/ComparePage/ComparePage'
+
 Vue.use(Router)
 
 export default new Router({

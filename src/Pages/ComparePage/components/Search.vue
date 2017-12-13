@@ -1,19 +1,27 @@
 <template>
     <div class="search_container">
         <div class="search_section">
-            <h1>Cost Of Living</h1>
+            <h1>Compare between two locations</h1>
             <form>
                 <v-select
-                    v-model="selectedLocation"
-                    class="grey--text text--lighten-1 theme--dark flex"
+                    v-model="selectedLocation1"
+                    class="grey--text text--lighten-1 theme--dark flex search_bar"
                     label="Type in a location to get started"
                     :items="getLocationName"
+                    :on-change="checkLocation()"
                     autocomplete
                 >
                 </v-select>
-                <v-btn @click.prevent="changeLocation()">
-                    Search
-                </v-btn>
+                <h2>and</h2>
+                <v-select
+                    v-model="selectedLocation2"
+                    class="grey--text text--lighten-1 theme--dark flex search_bar"
+                    label="Type in a location to get started"
+                    :items="getLocationName"
+                    :on-change="checkLocation()"
+                    autocomplete
+                >
+                </v-select>
             </form>
         </div>
     </div>
@@ -32,17 +40,23 @@
                     {name: 'Singapore', value: 'singapore'},
                     {name: 'Sydney', value: 'sydney'},
                 ],
-                selectedLocation: ""
+                selectedLocation1: "",
+                selectedLocation2: ""
             }
         },
         methods: {
-            changeLocation: function() {
-                console.log(this.selectedLocation);
+            checkLocation: function() {
+                if (this.selectedLocation1 && this.selectedLocation2){
+                    console.log("Load data");
+                    const loc1 = this.locations.find(val=>val.name===this.selectedLocation1);
+                    const loc2 = this.locations.find(val=>val.name===this.selectedLocation2);
+                    this.$emit('selectedLocation1',loc1.value);
+                    this.$emit('selectedLocation2',loc2.value);
+                }
             }
         },
         computed: {
             getLocationName(){
-                console.log(this.locations);
                 return this.locations.map(val=>val.name)
             }
         }
@@ -58,7 +72,7 @@
         height:450px;
         background-image: url("../../../assets/taiwan-city-life-wallpaper-2.png");
         background-position: center;
-        background-size: cover;
+        background-size: 100%;
         background-repeat: no-repeat;
         padding: 10px;
         color: #fff;
@@ -75,13 +89,27 @@
         font-size:24px;
         font-weight: 400;
     }
-
     .search_section {
         color: #fff;
         vertical-align: middle;
+        z-index: 2;
         left:0;
         right:0;
         margin: auto;
-        width: 30%;
+        width: inherit;
+    }
+
+    .search_section h2 {
+        width: auto;
+        margin: 0 50px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .search_bar {
+        width: 400px;
+        margin:0;
+        display: inline-block;
+        vertical-align: middle;
     }
 </style>

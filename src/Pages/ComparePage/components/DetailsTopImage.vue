@@ -18,36 +18,23 @@
                     <img class="icon" src="../../../assets/traffic-light.png" height="30" width="30"/>
                     <label>{{traffic}}</label>
                 </div>
-                <div class="descrip">
-                        <label><strong id="jobCount">{{jobCounts}}</strong> jobs available </label>
-                    </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { getStateTotalJobs } from '../../../data/api';
     export default {
-        props: ['float', 'locale', 'selectedLocation'],
+        props: ['float', 'selectedLocation'],
         data () {
             return {
                 location: {name: "Kuala Lumpur", value: "kl"},
                 temperature: {highest:30, lowest:20},
                 pollution: 40,
                 traffic: 60,
-                jobCounts: 0,
             }
         },
-        methods: {
-            getTotalJobsCount(){
-                const jobCounts = getStateTotalJobs(this.locale.country, this.locale.state); 
-                this.jobCounts = jobCounts;
-            }
-        },
-        mounted() {
-            this.getTotalJobsCount();
-        }
+        methods: {}
     }
 </script>
 
