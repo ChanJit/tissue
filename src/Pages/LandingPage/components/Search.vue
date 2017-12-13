@@ -4,7 +4,7 @@
             <h1>Cost Of Living</h1>
             <form>
                 <v-select
-                    v-model="selectedLocation1"
+                    v-model="selectedLocation"
                     class="grey--text text--lighten-1 theme--dark flex"
                     label="Type in a location to get started"
                     :items="getLocationName"
