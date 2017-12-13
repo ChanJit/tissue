@@ -1,5 +1,6 @@
 <template>
   <chartjs-pie
+    :bind="true"
     :option="{
         scaleShowVerticalLines: false,
         scales: {

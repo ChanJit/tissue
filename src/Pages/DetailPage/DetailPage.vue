@@ -35,192 +35,333 @@
         <hr>
         <v-layout row wrap>
           <v-flex xs12 md7>
-            <PieChart :data="[1,2,3,4,5]" :labels="['a','b','c','d','e']"/>
+            <PieChart  :data="getGraphData" :labels="getGraphName"/>
           </v-flex>
           <v-flex xs12 md5 class="costWrapper">
-            <CostDetails :items="costDetailData" :dateMode="selected.dateOption"></CostDetails>
+            <CostDetails :currency="currency || '' " :items="costDetailData" :dateMode="selected.dateOption"></CostDetails>
           </v-flex>
         </v-layout>
       </v-flex>
       <v-flex xs12>
-          <TabView/>
+          <TabView :currency="currency || '' " :data="this.livingCost"/>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import DetailsTopImage from './components/DetailsTopImage'
 import PieChart from './components/PieChart'
 import CostDetails from './components/CostDetails'
 import TabView from './components/TabView'
-import DetailsTopImage from './components/DetailsTopImage'
 import * as api from '../../data/api'
 
+const capitalString = string => {
+  return string
+    .split('-')
+    .map(val => val.charAt(0).toUpperCase() + val.slice(1))
+    .join(' ')
+}
 export default {
   name: 'DetailPage',
   components: {
+    DetailsTopImage,
     PieChart,
     CostDetails,
     TabView,
     DetailsTopImage
   },
-  created(){
-    this.selected.dateOption = this.dateOptions.find(opt => opt.enabled == true);
-    this.selected.homeOption = this.homeOptions.find(opt => opt.enabled == true);
-    this.selected.drivingOption = this.drivingOptions.find(opt => opt.enabled == true);
-    this.selected.familyOption = this.familyOptions.find(opt => opt.enabled == true);
-    this.getCountry();
-    this.getState();
+  created() {
+    this.selected.dateOption = this.dateOptions.find(opt => opt.enabled == true)
+    this.selected.homeOption = this.homeOptions.find(opt => opt.enabled == true)
+    this.selected.drivingOption = this.drivingOptions.find(
+      opt => opt.enabled == true
+    )
+    this.selected.familyOption = this.familyOptions.find(
+      opt => opt.enabled == true
+    )
+    this.getCountry()
+    this.getState()
   },
-  data () {
+  data() {
     return {
-      locale: {state: "", country:""},
-      expensePrice: 1000.00,
+      locale: {state: '', country: ''},
+      currency: '',
+      data: {
+        price: {}
+      },
+      expensePrice: 1000.0,
       selected: {
-        dateOption: "",
-        homeOption: "",
-        drivingOption: "",
-        familyOption: ""
+        dateOption: '',
+        homeOption: '',
+        drivingOption: '',
+        familyOption: ''
       },
       dateOptions: [
         {
-          name: "Weekly",
-          value:"weekly",
+          name: 'Weekly',
+          value: 'weekly',
           enabled: true
         },
         {
-          name: "Monthly",
-          value:"monthly",
+          name: 'Monthly',
+          value: 'monthly',
           enabled: false
         },
         {
-          name: "Yearly",
-          value:"yearly",
+          name: 'Yearly',
+          value: 'yearly',
           enabled: false
         }
       ],
       homeOptions: [
         {
-          name: "Rent",
-          value:"rent",
+          name: 'Rent',
+          value: 'rent',
           enabled: true
         },
         {
-          name: "Mortgage",
-          value:"mortgage",
+          name: 'Mortgage',
+          value: 'mortgage',
           enabled: false
         },
         {
-          name: "Neither",
-          value:"neither",
+          name: 'Neither',
+          value: 'neither',
           enabled: false
         }
       ],
+      livingCost: {},
       drivingOptions: [
         {
-          name: "Driving",
-          value:"driving",
+          name: 'Driving',
+          value: 'driving',
           enabled: true
         },
         {
-          name: "Public Transport",
-          value:"public_transport",
+          name: 'Public Transport',
+          value: 'public_transport',
           enabled: false
         },
         {
-          name: "Walking",
-          value:"walking",
+          name: 'Walking',
+          value: 'walking',
           enabled: false
         }
       ],
       familyOptions: [
-         {
-          name: "Single",
-          value: "single",
+        {
+          name: 'Single',
+          value: 'single',
           enabled: true
         },
         {
-          name: "Family",
-          value: "family",
+          name: 'Family',
+          value: 'family',
           enabled: false
         }
       ],
-      costDetailData: [
+      costDetailData: []
+    }
+  },
+  computed: {
+    getGraphData() {
+      let arr = []
+      if (this.data)
+        for (let i in this.data.price) {
+          arr.push(this.data.price[i])
+        }
+      return arr
+    },
+    getGraphName() {
+      let arr = []
+      if (this.data)
+        for (let i in this.data.price) {
+          arr.push(i)
+        }
+      return arr
+    }
+  },
+  methods: {
+    handleOptionClick(option, type) {
+      switch (type) {
+        case 'date':
+          this.dateOptions.find(opt => opt.enabled == true).enabled = false
+          this.selected.dateOption = option
+          break
+        case 'home':
+          this.homeOptions.find(opt => opt.enabled == true).enabled = false
+          this.selected.homeOption = option
+          break
+        case 'drive':
+          this.drivingOptions.find(opt => opt.enabled == true).enabled = false
+          this.selected.drivingOption = option
+          break
+        case 'family':
+          this.familyOptions.find(opt => opt.enabled == true).enabled = false
+          this.selected.familyOption = option
+          break
+      }
+      option.enabled = !option.enabled
+      this.calculate();
+    },
+    getCountry() {
+      let countryParam = this.$route.params.country
+      this.locale.country =
+        countryParam.charAt(0).toUpperCase() + countryParam.slice(1)
+    },
+    getState() {
+      let stateParam = this.$route.params.state
+      var state = ''
+      if (stateParam) {
+        //construct the state string
+        let stateChars = stateParam.split('-')
+        stateChars.forEach(char => {
+          let capitalized = char.charAt(0).toUpperCase() + char.slice(1)
+          capitalized += ' '
+          state += capitalized
+        })
+        //remove empty space
+        state = state.slice(0, -1)
+        this.locale.state = state
+      }
+    },
+    calculate() {
+      const {
+        dateOption,
+        homeOption,
+        drivingOption,
+        familyOption
+      } = this.selected
+      this.data = {price: {}}
+      switch (dateOption.value) {
+        case 'weekly':
+          this.data.day = 7
+          break
+        case 'monthly':
+          this.data.day = 30
+          break
+        case 'yearly':
+          this.data.day = 365
+          break
+        default:
+          break
+      }
+
+      switch (familyOption.value) {
+        case 'single':
+          this.data.alone = true
+          break
+        case 'family':
+          this.data.alone = false
+          break
+        default:
+          break
+      }
+      let scope
+      switch (homeOption.value) {
+        case 'rent':
+          scope = this.livingCost['Rent Per Month']
+          if (this.data.alone) {
+            this.data.price.property = scope[1].price / 30
+          } else {
+            this.data.price.property = scope[3].price / 30
+          }
+          break
+        case 'mortgage':
+          scope = this.livingCost['Buy Apartment Price']
+          if (this.data.alone) {
+            this.data.price.property = scope[1].price * 92.903 / 30 / 365 // pay in 30 years, 92.903 is the avg square meter
+          } else {
+            this.data.price.property = scope[0].price * 92.903 / 30 / 365 // pay in 30 years, 92.903 is the avg square meter
+          }
+          break
+        default:
+          this.data.price.home = 0
+          break
+      }
+
+      switch (drivingOption.value) {
+        case 'driving':
+          scope = this.livingCost['Transportation']
+          this.data.price.transport = scope[5].price / 8 * 30
+          break
+        case 'public_transport':
+          scope = this.livingCost['Transportation']
+          this.data.price.transport = scope[0].price * 2
+          break
+        default:
+          this.data.price.transport = 0
+      }
+
+      // food
+      let foodScope = this.livingCost['Restaurants']
+      let leisureScope = this.livingCost['Sports And Leisure']
+      if (this.data.alone) {
+        this.data.price.food = foodScope[0].price * 3
+        this.data.price.entertainment =
+          leisureScope[0].price / 30 + leisureScope[2].price / 7
+      } else {
+        this.data.price.food = foodScope[0].price * 3 * 3
+        this.data.price.entertainment =
+          (leisureScope[0].price / 30 + leisureScope[2].price / 7) * 3
+      }
+
+      for (let item in this.data.price) {
+        this.data.price[item] = Number(this.data.price[item].toFixed(2))
+      }
+
+      this.costDetailData = [
         {
           title: 'Transport',
-          price: 100
+          price: this.data.price.transport * this.data.day
         },
         {
           title: 'Food',
-          price: 300
-        },
-        {
-          title: 'Healthcare',
-          price: 250
+          price: this.data.price.food * this.data.day
         },
         {
           title: 'Property',
-          price: 120
+          price: this.data.price.property * this.data.day || 0
         },
         {
           title: 'Entertainment',
-          price: 100
+          price: this.data.price.entertainment * this.data.day
         }
       ]
     }
   },
-  methods:{
-    handleOptionClick(option, type){
-      switch(type){
-        case "date":
-          (this.dateOptions.find(opt => opt.enabled == true)).enabled = false;
-          this.selected.dateOption = option;
-          break;
-        case "home":
-          (this.homeOptions.find(opt => opt.enabled == true)).enabled = false;
-          this.selected.homeOption = option;
-          break;
-        case "drive":
-          (this.drivingOptions.find(opt => opt.enabled == true)).enabled = false;
-          this.selected.drivingOption = option;
-          break;
-        case "family":
-          (this.familyOptions.find(opt => opt.enabled == true)).enabled = false;
-          this.selected.familyOption = option;
-          break;
+  mounted() {
+    let country = this.$route.params.country
+    if (country) {
+      // it is possible for a data to be returned undefined
+      country = capitalString(country.toLowerCase())
+      let state = this.$route.params.state
+      if (state) {
+        state = capitalString(state.toLowerCase())
+        this.livingCost = api.getLivingCost(country, state)
+        this.pollution = api.getPollution(country, state)
+        this.healthcare = api.getHealthcare(country, state)
+      } else {
+        this.livingCost = api.getLivingCost(country)
+        this.pollution = api.getPollution(country)
+        this.healthcare = api.getHealthcare(country)
       }
-      option.enabled = !option.enabled;
-    },
-    getCountry(){
-      let countryParam = this.$route.params.country;
-      this.locale.country = countryParam.charAt(0).toUpperCase() + countryParam.slice(1);
-    },
-    getState(){
-      let stateParam = this.$route.params.state;
-      var state = '';
-      if(stateParam){     //construct the state string
-        let stateChars = stateParam.split("-");
-        stateChars.forEach(char => {
-          let capitalized = char.charAt(0).toUpperCase() + char.slice(1);
-          capitalized += " ";
-          state += capitalized;
-      });
-      //remove empty space
-        state = state.slice(0, -1);
-        this.locale.state = state;
-      }
+      this.currency = api.getCurrency(country)
+      this.calculate();
+      console.log(this)
     }
-  },
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.costWrapper{
+.costWrapper {
   display: flex;
 }
 
-.containerTitle{
+.containerTitle {
   color: #2d3092;
   font-size: 24px;
   font-weight: bold;
@@ -228,42 +369,42 @@ export default {
   text-align: center;
 }
 
-#estimationTitle{
+#estimationTitle {
   text-align: center;
 }
 
-.subtitle{
+.subtitle {
   font-style: italic;
   font-size: 12px;
   color: grey;
 }
 
-.layoutWrapper{
+.layoutWrapper {
   justify-content: center;
   align-items: center;
   text-align: left;
-  margin-top: 10px  !important;
+  margin-top: 10px !important;
   margin-bottom: 10px !important;
 }
 
-.expensePrice{
+.expensePrice {
   font-size: 30px;
-  color: #7B7E8B;
+  color: #7b7e8b;
 }
 
-.layout2{
+.layout2 {
   text-align: center;
 }
 
-.icon-color{
+.icon-color {
   color: #2d3092;
 }
 
-.optionsContainer{
+.optionsContainer {
   text-align: left;
 }
 
-.optionButton{
+.optionButton {
   margin: 5px;
   border-radius: 17%;
   border: 1px solid black;
@@ -276,14 +417,18 @@ export default {
   transition: all 0.3s;
 }
 
-.optionButton:focus{
+.optionButton:focus {
   outline: 0;
 }
 
-.optionButton:hover, .active{
+.optionButton:hover,
+.active {
   margin: 5px;
   background-color: #2d3092 !important;
   color: white;
   border: 1px solid #2d3092;
+}
+.extraTopMargin {
+  margin-top: 18px;
 }
 </style>

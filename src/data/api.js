@@ -99,7 +99,6 @@ export const getHealthcare = (country, state) => {
 }
 
 export const getLivingCost = (country, state) => {
-  console.log('asd')
   let livingCost = Object.assign({}, results)
   let response
 
@@ -111,7 +110,7 @@ export const getLivingCost = (country, state) => {
       if (index >= 0) {
         response = livingCost[country].child[states[index]]
       }
-    }    
+    }
   } else if (country && !state) {
     delete livingCost[country].child
     response = livingCost[country]
@@ -125,7 +124,9 @@ export const getLivingCost = (country, state) => {
         responseData[i].push({
           text: u[0],
           currency: u[1].slice(-2),
-          price: parseFloat(u[1].replace(',', '').substring(0, u[1].length - 2)),
+          price: parseFloat(
+            u[1].replace(',', '').substring(0, u[1].length - 2)
+          ),
           range: u[2].trim()
         })
       }
@@ -154,12 +155,21 @@ export const getStates = country => {
 
 export const getStateJobProfile = (country, state) => {
   let stateProfile = jobs.find(job => {
-    if(job['Country'] == country && job['City name'] == state){
-      return job;
+    if (job['Country'] === country && job['City name'].indexOf(state)>=0) {
+      return job
     }
   })
 
-  return stateProfile;
-
+  return stateProfile
 }
 
+export const getCurrency = country => {
+  if (country.toLowerCase() === 'malaysia') {
+    return 'RM'
+  } else if (country.toLowerCase() === 'australia') {
+    return 'AUD'
+  } else if (country.toLowerCase() === 'singapore') {
+    return 'SGD'
+  }
+  return 'HELLO?'
+}

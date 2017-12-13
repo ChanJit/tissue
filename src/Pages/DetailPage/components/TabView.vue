@@ -29,22 +29,22 @@
         <v-card flat>
             <div class="container">
                 <v-layout row justify-space-between>
-                    <v-flex headline xs2 offset-xs6>
-                        Between
+                    <v-flex headline xs3 offset-xs5>
+                        Between ({{currency}})
                     </v-flex>
-                    <v-flex headline xs2>
-                        Average cost
+                    <v-flex headline xs3>
+                        Average cost ({{currency}})
                     </v-flex>
                 </v-layout>
                 <v-layout class="mt-3" v-for="item of items" :key="item.name" row justify-space-between>
                     <v-flex title xs4 >
-                        {{item.name}}
+                        {{item.text}}
                     </v-flex>
-                    <v-flex title xs2 >
-                        {{item.between}}
+                    <v-flex title xs3 >
+                        {{item.range}}
                     </v-flex>
-                    <v-flex title xs2 offset-xs0>
-                        {{item.average}}
+                    <v-flex title xs3 offset-xs0>
+                        {{item.price}}
                     </v-flex>
                 </v-layout>
             </div>
@@ -57,7 +57,14 @@
 <script>
 export default {
   name: 'TabView',
-  props: {},
+  props: {
+    data: {
+      type: Object
+    },
+    currency: {
+      type: String
+    }
+  },
   data() {
     return {
       tab: 'tab-1',
@@ -96,30 +103,52 @@ export default {
       ]
     }
   },
+  mounted() {},
   watch: {
+    data() {
+      this.items = this.data['Transportation']
+    },
     tab(newValue, oldValue) {
-      this.items = [
-        {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
-          average: '5'
-        },
-        {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
-          average: '2.5'
-        },
-        {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
-          average: '2.5'
-        },
-        {
-          name: 'One-way Ticket (Local Transportation)',
-          between: '2.00 - 3.00',
-          average: '2.5'
+      let object = {
+        1: 'Transportation',
+        2: ['Buy Apartment Price', 'Rent Per Month', 'Utilities (Monthly)'],
+        3: 'Restaurants',
+        4: 'Sports And Leisure'
+      }
+      let arr = []
+      let index = newValue[newValue.length - 1]
+      let item = object[index]
+      if (Array.isArray(item)) {
+        for (let u of item) {
+          arr.push(...this.data[u])
         }
-      ]
+      } else {
+        arr = this.data[item]
+      }
+
+      this.items = arr
+      // this.items = [
+      //   {
+      //     name: 'One-way Ticket (Local Transportation)',
+      //     between: '2.00 - 3.00',
+      //     average: '5'
+      //   },
+      //   {
+      //     name: 'One-way Ticket (Local Transportation)',
+      //     between: '2.00 - 3.00',
+      //     average: '2.5'
+      //   },
+      //   {
+      //     name: 'One-way Ticket (Local Transportation)',
+      //     between: '2.00 - 3.00',
+      //     average: '2.5'
+      //   },
+      //   {
+      //     name: 'One-way Ticket (Local Transportation)',
+      //     between: '2.00 - 3.00',
+      //     average: '2.5'
+      //   }
+      // ]
     }
   }
 }
@@ -145,11 +174,13 @@ Example
   font-weight: 600;
 }
 .application .theme--dark.tabs__bar .tabs__li:hover {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 </style>
 <style scoped>
-.tabs__item:active, .tabs__item:hover, tabs__item:focus {
-    text-decoration: none;
+.tabs__item:active,
+.tabs__item:hover,
+tabs__item:focus {
+  text-decoration: none;
 }
 </style>
