@@ -21,7 +21,6 @@ export default {
   name: 'InfoContainer',
   methods: {
     goRoute: item => {
-      Router.push(item.route)
     }
   },
   props: {
@@ -95,7 +94,6 @@ export default {
 .imageItem {
   color: #2c3093;
   font-size: 21px;
-  cursor: pointer;
 }
 h2 {
   color: #5f5e5f;

@@ -53,7 +53,7 @@
         <cost-details :currency="currency2" :items="costDetailData2" :dateMode="selected.dateOption" class="location"></cost-details>
       </v-layout>
       <v-layout  class="extraTopMargin" v-show=selectedLocation2 wrap>
-        <TabView2 :location1="state1" :location2="state2" :data1="livingCost1" :data2="livingCost2" :items="getItems" />
+        <TabView2 :currency1="currency1" :currency2="currency2" :location1="state1" :location2="state2" :data1="livingCost1" :data2="livingCost2" :items="getItems" />
       </v-layout>
     </div>
 </template>
