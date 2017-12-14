@@ -90,6 +90,8 @@ export default {
   border-radius: 50%;
   border: 8px solid #2d3092;
   margin-bottom: 1em;
+  background-size: cover;
+  background-position: center;
 }
 .imageItem {
   color: #2c3093;
