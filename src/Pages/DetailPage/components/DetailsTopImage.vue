@@ -19,8 +19,8 @@
                     <label>{{traffic}}</label>
                 </div>
                 <div class="descrip">
-                        <a id="jobCountText" target="_blank" :href="stateJobProfile.link"><label><strong>{{stateJobProfile.jobCounts}}</strong> jobs available </label></a>
-                    </div>
+                    <label><a class="jobCountText" target="_blank" :href="stateJobProfile.link"><strong>{{stateJobProfile.jobCounts}}</strong> jobs available</a></label>
+                </div>
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@ import * as api from '../../../data/api';
 </script>
 
 <style scoped>
-    #jobCountText{
+    .jobCountText{
         color: white;
         cursor: pointer;
     }
