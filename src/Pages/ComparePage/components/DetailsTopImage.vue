@@ -19,9 +19,9 @@
                     <label>{{traffic}}</label>
                 </div>
                 <div class="descrip">
-                        <a id="jobCountText" target="_blank" :href="stateJobProfile.link"><label><strong>{{stateJobProfile.jobCounts}}</strong> jobs available </label></a>
-                    </div>
-            </div>
+                    <label><a class="jobCountText" target="_blank" :href="stateJobProfile.link"><strong>{{stateJobProfile.jobCounts}}</strong> jobs available</a></label>
+                </div>
+        </div>
         </div>
     </div>
 </template>
@@ -150,9 +150,10 @@ export default {
 </script>
 
 <style scoped>
-#jobCountText {
+.jobCountText {
   color: white;
   cursor: pointer;
+
 }
 
 .locationdetails_container {
