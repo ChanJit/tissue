@@ -53,6 +53,7 @@ export default {
 .costDetailsContainer {
   justify-content: center;
   align-items: center;
+  padding:20px 10px;
 }
 
 .containerTitle {
