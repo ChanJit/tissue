@@ -30,10 +30,10 @@
             <div class="container">
                 <v-layout row justify-space-between>
                     <v-flex headline xs2>
-                        {{location1}}
+                        {{location1}} ({{currency1}})
                     </v-flex>
                     <v-flex headline xs2>
-                        {{location2}}
+                        {{location2}} ({{currency2}})
                     </v-flex>
                 </v-layout>
                 <v-layout class="mt-3" v-for="item of items" :key="item.name" row justify-space-between>
@@ -67,7 +67,9 @@ export default {
     location1: {
       type: String
     },
-    location2: {type: String}
+    location2: {type: String},
+    currency1: {type: String},
+    currency2: {type: String}
   },
   data() {
     return {

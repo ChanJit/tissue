@@ -1,6 +1,6 @@
 <template>
-  <v-tabs :scrollable="false" xs12 class="header-container">
-    <v-tabs-bar color="lighten-4">
+  <v-tabs :scrollable="false" xs12 class="grey lighten-4">
+    <v-tabs-bar color="lighten-4" class="header-container">
       <v-tabs-slider color="indigo darken-4"></v-tabs-slider>
       <v-tabs-item class="menuBar-link" to="/">
         Home
@@ -22,7 +22,7 @@
       return {}
     },
     beforeMount: function() {
-      document.get
+
     },
     methods: {
       redirectToJS: function(event) {
@@ -42,8 +42,12 @@
   .menuBar-link a:focus, .menuBar-link a:visited{
     text-decoration: none;
   }
+
   .header-container {
-    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media(min-width:480px) {
@@ -53,12 +57,26 @@
   }
   @media(min-width:768px) {
     .header-container {
-      max-width:992px
+      width: 750px;
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+  }
+  @media (min-width: 992px){
+    .header-container {
+      width: 970px;
     }
   }
   @media(min-width:1000px) {
     .header-container {
       max-width:1170px
+    }
+  }
+  @media (min-width: 1210px) {
+    .header-container {
+      width: 1170px;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 </style>

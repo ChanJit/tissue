@@ -5,7 +5,7 @@
         </div>
         <v-layout wrap>
           <div v-show=selectedLocation1 class="location">
-              <DetailsTopImage :locale="locale1" :float="'right'"/>
+              <DetailsTopImage :qwe="selectedLocation1" :locale="locale1" :float="'right'"/>
 
           </div>
           <div v-show=selectedLocation2 class="location">
@@ -53,7 +53,7 @@
         <cost-details :currency="currency2" :items="costDetailData2" :dateMode="selected.dateOption" class="location"></cost-details>
       </v-layout>
       <v-layout  class="extraTopMargin" v-show=selectedLocation2 wrap>
-        <TabView2 :location1="state1" :location2="state2" :data1="livingCost1" :data2="livingCost2" :items="getItems" />
+        <TabView2 :currency1="currency1" :currency2="currency2" :location1="state1" :location2="state2" :data1="livingCost1" :data2="livingCost2" :items="getItems" />
       </v-layout>
     </div>
 </template>
@@ -231,6 +231,8 @@ export default {
       this.locale2.country = this.country2
       this.locale1.state = this.state1
       this.locale2.state = this.state2
+      this.locale1 = Object.assign({}, this.locale1);
+      this.locale2 = Object.assign({}, this.locale2)
     },
     getLocation1(value) {
       this.selectedLocation1 = value

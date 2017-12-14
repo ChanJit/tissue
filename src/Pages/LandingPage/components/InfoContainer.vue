@@ -5,7 +5,7 @@
       <v-layout wrap class="spaceAround">
         <v-flex d-flex xs12 md2 v-for="(item) in items" :key="item.name">
           <v-flex v-on:click="goRoute(item)" class="imageItem">
-            <img class="circleImg" :src="item.imgSrc" />
+            <div class="circleImg" v-bind:style="{ 'background-image': 'url(' + item.imgSrc + ')' }"></div>
             <v-flex>{{item.name}}</v-flex>
           </v-flex>
         </v-flex>
@@ -21,7 +21,6 @@ export default {
   name: 'InfoContainer',
   methods: {
     goRoute: item => {
-      Router.push(item.route)
     }
   },
   props: {
@@ -91,11 +90,12 @@ export default {
   border-radius: 50%;
   border: 8px solid #2d3092;
   margin-bottom: 1em;
+  background-size: cover;
+  background-position: center;
 }
 .imageItem {
   color: #2c3093;
   font-size: 21px;
-  cursor: pointer;
 }
 h2 {
   color: #5f5e5f;
