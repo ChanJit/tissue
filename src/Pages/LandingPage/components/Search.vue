@@ -1,13 +1,13 @@
 <template>
     <div class="search_container">
         <div class="search_section">
-            <h1>Cost Of Living</h1>
+            <h1>Living Expense Insights</h1>
             <form>
                 <v-select
-                    label="Select"
+                    label="Select a location"
                     :items="states"
                     v-model="selectedLocation"
-                    class="grey--text text--lighten-1 theme--dark flex"
+                    class="grey--text text--lighten-1 theme--dark flex search_bar"
                     item-text="name"
                     item-value="url"
                     autocomplete
@@ -105,6 +105,13 @@ import * as api from '../../../data/api'
         left:0;
         right:0;
         margin: auto;
-        width: 30%;
+        width: 50%;
+    }
+
+    .search_bar {
+        width: 60%;
+        left:0;
+        right:0;
+        margin: auto;
     }
 </style>

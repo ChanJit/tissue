@@ -6,7 +6,7 @@
                 <v-select
                     v-model="selectedLocation1"
                     class="grey--text text--lighten-1 theme--dark flex search_bar"
-                    label="Type in a location to get started"
+                    label="Select a location"
                     :items="getLocationName"
                     :on-change="checkLocation()"
                     autocomplete
@@ -16,7 +16,7 @@
                 <v-select
                     v-model="selectedLocation2"
                     class="grey--text text--lighten-1 theme--dark flex search_bar"
-                    label="Type in a location to get started"
+                    label="Select a location"
                     :items="getLocationName"
                     :on-change="checkLocation()"
                     autocomplete
