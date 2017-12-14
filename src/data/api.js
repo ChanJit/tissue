@@ -149,9 +149,12 @@ export const getCountries = () => {
 
 export const getStates = country => {
   let states = []
+  let filterList = ['Kuala Lumpur', 'Johor Bahru', 'Petaling Jaya', 'George Town', 'Ipoh', 'Singapore', 'Sydney', 'Melbourne', 'Gold Coast']
+  
   for (let i in results[country].child) {
-    if (i) states.push(i)
+    if (filterList.indexOf(i) >= 0) states.push(i)
   }
+
   return states
 }
 
