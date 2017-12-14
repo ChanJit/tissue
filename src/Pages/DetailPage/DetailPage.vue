@@ -1,7 +1,7 @@
 <template>
   <div class="extraTopMargin">
     <div class="location">
-      <DetailsTopImage :locale="locale"  :float="'right'" :selectedLocation="'kl'"></DetailsTopImage>
+      <DetailsTopImage :locale="locale"  :float="'right'"></DetailsTopImage>
     </div>
   <v-container fluid grid-list-lg class="extraTopMargin">
     <v-layout row wrap>

@@ -1,5 +1,5 @@
 <template>
-    <div class="locationdetails_container" :class="selectedLocation" >
+    <div class="locationdetails_container" :class="location.value" >
         <div class="locationdetails" :class="float">
             <div class="locationdetails-center">
                 <div class="descrip">
@@ -29,10 +29,10 @@
 <script>
 import * as api from '../../../data/api';
     export default {
-        props: ['float', 'locale', 'selectedLocation'],
+        props: ['float', 'locale'],
         data () {
             return {
-                location: {name: "Kuala Lumpur", value: "kl"},
+                location: {name: this.locale.state, value: ""},
                 temperature: {highest:30, lowest:20},
                 pollution: "",
                 traffic: 60,
@@ -82,9 +82,42 @@ import * as api from '../../../data/api';
                         this.temperature.lowest = "10";
                         break;
                 }
+            },
+            getImageBackground(){
+                switch(this.locale.state){
+                    case "Kuala Lumpur":
+                        this.location.value = "kl";
+                        break;
+                    case "Ipoh":
+                        this.location.value = "ipoh";
+                        break;
+                    case "Johor Bahru":
+                        this.location.value = "jb";
+                        break;
+                    case "Petaling Jaya":
+                        this.location.value = "pj";
+                        break;
+                    case "George Town":
+                        this.location.value = "george-town";
+                        break;
+                    case "Singapore":
+                        this.location.value = "singapore";
+                        break;
+                    case "Sydney":
+                        this.location.value = "sydney";
+                        break;
+                    case "Melbourne":
+                        this.location.value = "melbourne";
+                        break;
+                    case "Gold Coast":
+                        this.location.value = "gold-coast";
+                        break;
+                    default: this.location.value = "kl";
+                }
             }
         },
         mounted() {
+            this.getImageBackground();
             this.getTotalJobsProfile();
             this.getPollutionData();
             this.getTrafficData();
@@ -154,7 +187,7 @@ import * as api from '../../../data/api';
         background-image: url("../../../assets/cities/ipoh.png");
     }
 
-    .georgetown {
+    .george-town {
         background-image: url("../../../assets/cities/george-town.png");
     }
 
@@ -178,7 +211,7 @@ import * as api from '../../../data/api';
         background-image: url("../../../assets/cities/sydney.png");
     }
 
-    .goldcoast {
+    .gold-coast {
         background-image: url("../../../assets/cities/gold-coast.png");
     }
 </style>
