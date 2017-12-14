@@ -1,10 +1,10 @@
 <template>
-    <div class="locationdetails_container" :class="selectedLocation" >
+    <div class="locationdetails_container" :class="location.value" >
         <div class="locationdetails" :class="float">
             <div class="locationdetails-center">
                 <div class="descrip">
                     <img class="icon" src="../../../assets/map-markers.png" height="30" width="30"/>
-                    <label>{{location.name}}</label>
+                    <label>{{locale.state}}</label>
                 </div>
                 <div class="descrip">
                     <img class="icon" src="../../../assets/temperature.png" height="30" width="30"/>
@@ -18,27 +18,127 @@
                     <img class="icon" src="../../../assets/traffic-light.png" height="30" width="30"/>
                     <label>{{traffic}}</label>
                 </div>
+                <div class="descrip">
+                        <a id="jobCountText" target="_blank" :href="stateJobProfile.link"><label><strong>{{stateJobProfile.jobCounts}}</strong> jobs available </label></a>
+                    </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import * as api from '../../../data/api';
     export default {
-        props: ['float', 'selectedLocation'],
+        props: ['float', 'locale'],
         data () {
             return {
-                location: {name: "Kuala Lumpur", value: "kl"},
+                location: {name: this.locale.state, value: ""},
                 temperature: {highest:30, lowest:20},
-                pollution: 40,
+                pollution: "",
                 traffic: 60,
+                stateJobProfile: {
+                    jobCounts: "",
+                    link: ""
+                },
+
             }
         },
-        methods: {}
+        methods: {
+            getTotalJobsProfile(){
+                const profile = api.getStateJobProfile(this.locale.country, this.locale.state); 
+                this.stateJobProfile.jobCounts = profile['Job Count'];
+                this.stateJobProfile.link = profile['Link to job'];
+            },
+            getPollutionData(){
+                const data = api.getPollution(this.locale.country, this.location.state);
+                this.pollution = data[0].level;
+            },
+            getTrafficData(){
+                console.log(this.locale.country);
+                switch(this.locale.country){
+                    case "Malaysia":
+                        this.traffic = 192.35
+                        break;
+                    case "Singapore":
+                        this.traffic = 177.62
+                        break;
+                    case "Australia":
+                        this.traffic = 	183.17
+                        break;
+                }
+            },
+            getTemperatureData(){
+                switch(this.locale.country){
+                    case "Malaysia":
+                        this.temperature.highest = "32";
+                        this.temperature.lowest = "23";
+                        break;
+                    case "Singapore":
+                        this.temperature.highest = "28";
+                        this.temperature.lowest = "24";
+                        break;
+                    case "Australia":
+                        this.temperature.highest = "34";
+                        this.temperature.lowest = "10";
+                        break;
+                }
+            },
+            getImageBackground(){
+                switch(this.locale.state){
+                    case "Kuala Lumpur":
+                        this.location.value = "kl";
+                        break;
+                    case "Ipoh":
+                        this.location.value = "ipoh";
+                        break;
+                    case "Johor Bahru":
+                        this.location.value = "jb";
+                        break;
+                    case "Petaling Jaya":
+                        this.location.value = "pj";
+                        break;
+                    case "George Town":
+                        this.location.value = "george-town";
+                        break;
+                    case "Singapore":
+                        this.location.value = "singapore";
+                        break;
+                    case "Sydney":
+                        this.location.value = "sydney";
+                        break;
+                    case "Melbourne":
+                        this.location.value = "melbourne";
+                        break;
+                    case "Gold Coast":
+                        this.location.value = "gold-coast";
+                        break;
+                    default: this.location.value = "default-city";
+                }
+            }
+        },
+        mounted() {
+            // this.getImageBackground();
+            // this.getTotalJobsProfile();
+            // this.getPollutionData();
+            // this.getTrafficData();
+            // this.getTemperatureData();
+            // debugger;
+            console.log(this)
+        },
+        watch: {
+            locale(newValue) {
+                console.log('asd', newValue)
+            }
+        }
     }
 </script>
 
 <style scoped>
+    #jobCountText{
+        color: white;
+        cursor: pointer;
+    }
+
     .locationdetails_container {
         background-position: center;
         background-size: cover;
@@ -94,7 +194,7 @@
         background-image: url("../../../assets/cities/ipoh.png");
     }
 
-    .georgetown {
+    .george-town {
         background-image: url("../../../assets/cities/george-town.png");
     }
 
@@ -118,7 +218,11 @@
         background-image: url("../../../assets/cities/sydney.png");
     }
 
-    .goldcoast {
+    .gold-coast {
         background-image: url("../../../assets/cities/gold-coast.png");
+    }
+
+    .default-city {
+        background-image: url("../../../assets/taiwan-city-life-wallpaper-2.png")
     }
 </style>

@@ -5,11 +5,11 @@
         </div>
         <v-layout wrap>
           <div v-show=selectedLocation1 class="location">
-              <DetailsTopImage :float="'right'" :selectedLocation="selectedLocation1"/>
+              <DetailsTopImage :locale="locale1" :float="'right'"/>
 
           </div>
           <div v-show=selectedLocation2 class="location">
-              <DetailsTopImage :float="'right'" :selectedLocation="selectedLocation2"/>
+              <DetailsTopImage :locale="locale2" :float="'right'"/>
           </div>
         </v-layout>
         <v-container v-show=selectedLocation2 grid-list-md text-xs-center icons>
@@ -97,10 +97,8 @@ export default {
           let x = {}
           c.push({a: a[i][u], b: b[i][u]})
         }
-        console.log(c)
         return c
       }
-      console.log('asd')
       return []
     },
     getGraph1Data() {
@@ -109,7 +107,6 @@ export default {
         for (let i in this.data1.price) {
           if (this.data1.price[i]) arr.push(this.data1.price[i])
         }
-      console.log(arr)
       return arr
     },
     getGraph2Data() {
@@ -139,6 +136,10 @@ export default {
   },
   data() {
     return {
+      locale1: {state: '', country: ''},
+
+      locale2: {state: '', country: ''},
+
       currency1: '',
       currency2: '',
       data1: {price: {}},
@@ -224,6 +225,13 @@ export default {
     }
   },
   methods: {
+    getCountry() {
+      // let countryParam = this.$route.params.country
+      this.locale1.country = this.country1
+      this.locale2.country = this.country2
+      this.locale1.state = this.state1
+      this.locale2.state = this.state2
+    },
     getLocation1(value) {
       this.selectedLocation1 = value
     },
@@ -261,7 +269,6 @@ export default {
       } = this.selected
       this.data1 = {price: {}}
       this.data2 = {price: {}}
-      console.log(this.livingCost1 === this.livingCost2)
       switch (dateOption.value) {
         case 'weekly':
           this.data1.day = 7
@@ -364,7 +371,6 @@ export default {
         this.data1.price[item] = Number(this.data1.price[item].toFixed(2))
         this.data2.price[item] = Number(this.data2.price[item].toFixed(2))
       }
-      console.log(this.data1)
       this.costDetailData1 = [
         {
           title: 'Transport',
@@ -410,21 +416,23 @@ export default {
       let location2 = json.find(val => val.value === this.selectedLocation2)
       if (location1 && location2) {
         // it is possible for a data to be returned undefined
-        let country1 = location1.country
-        let country2 = location2.country
-        this.state1 = location1.state
-        this.state2 = location2.state
+        this.country1 = location1.country
+        this.country2 = location2.country
+        this.state1 = location1.name
+        this.state2 = location2.name
 
-        this.livingCost1 = api.getLivingCost(country1, this.state1)
-        this.livingCost2 = api.getLivingCost(country2, this.state2)
-        this.pollution1 = api.getPollution(country1, this.state1)
-        this.pollution2 = api.getPollution(country2, this.state2)
+        this.livingCost1 = api.getLivingCost(this.country1, this.state1)
+        this.livingCost2 = api.getLivingCost(this.country2, this.state2)
+        this.pollution1 = api.getPollution(this.country1, this.state1)
+        this.pollution2 = api.getPollution(this.country2, this.state2)
         // this.healthcare = api.getHealthcare(country, state)
 
-        this.currency1 = api.getCurrency(country1)
-        this.currency2 = api.getCurrency(country2)
+        this.currency1 = api.getCurrency(this.country1)
+        this.currency2 = api.getCurrency(this.country2)
         this.calculate()
         console.log(this)
+        this.getCountry()
+        
       }
     },
     selectedLocation2(newValue) {
@@ -433,21 +441,22 @@ export default {
       let location2 = json.find(val => val.value === newValue)
       if (location1 && location2) {
         // it is possible for a data to be returned undefined
-        let country1 = location1.country
-        let country2 = location2.country
+        this.country1 = location1.country
+        this.country2 = location2.country
         this.state1 = location1.name
         this.state2 = location2.name
 
-        this.livingCost1 = api.getLivingCost(country1, this.state1)
-        this.livingCost2 = api.getLivingCost(country2, this.state2)
-        this.pollution1 = api.getPollution(country1, this.state1)
-        this.pollution2 = api.getPollution(country2, this.state2)
+        this.livingCost1 = api.getLivingCost(this.country1, this.state1)
+        this.livingCost2 = api.getLivingCost(this.country2, this.state2)
+        this.pollution1 = api.getPollution(this.country1, this.state1)
+        this.pollution2 = api.getPollution(this.country2, this.state2)
         // this.healthcare = api.getHealthcare(country, state)
 
-        this.currency1 = api.getCurrency(country1)
-        this.currency2 = api.getCurrency(country2)
+        this.currency1 = api.getCurrency(this.country1)
+        this.currency2 = api.getCurrency(this.country2)
         this.calculate()
         console.log(this)
+        this.getCountry()
       }
     }
   }
