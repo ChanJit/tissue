@@ -300,7 +300,7 @@
 
   @media (min-width: 768px) and (max-width:991px) {
     .visible-sm-block {
-      display:block!important
+      display:flex!important
     }
   }
 
@@ -318,7 +318,7 @@
 
   @media (min-width: 992px) and (max-width:1199px) {
     .visible-md {
-      display:block!important
+      display:flex!important
     }
 
     table.visible-md {
@@ -336,7 +336,7 @@
 
   @media (min-width: 992px) and (max-width:1199px) {
     .visible-md-block {
-      display:block!important
+      display:flex!important
     }
   }
 
@@ -354,7 +354,7 @@
 
   @media (min-width: 1200px) {
     .visible-lg {
-      display:block!important
+      display:flex!important
     }
 
     table.visible-lg {
@@ -372,7 +372,7 @@
 
   @media (min-width: 1200px) {
     .visible-lg-block {
-      display:block!important
+      display:flex!important
     }
   }
 
