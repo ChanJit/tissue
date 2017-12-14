@@ -33,12 +33,15 @@
         data () {
             return {
                 locations: [
-                    {name: 'Kuala Lumpur', value: 'kl'},
-                    {name: 'Johor Bahru', value: 'jb'},
-                    {name: 'Ipoh', value: 'ipoh'},
-                    {name: 'Petaling Jaya', value: 'pj'},
-                    {name: 'Singapore', value: 'singapore'},
-                    {name: 'Sydney', value: 'sydney'},
+                    {name: "Kuala Lumpur", country: "Malaysia", value: "kl"},
+                    {name: "George Town", country: "Malaysia", value:"georgetown"},
+                    {name: "Johor Bahru", country: "Malaysia", value: "jb"},
+                    {name: "Ipoh", country: "Malaysia", value: "ipoh"},
+                    {name: "Petaling Jaya", country: "Malaysia", value: "pj"},
+                    {name: "Singapore", country: "Singapore", value: "singapore"},
+                    {name: "Sydney", country: "Australia", value: "sydney"},
+                    {name: "Gold Coast", country: "Australia", value: "goldcoast"},
+                    {name: "Melbourne", country: "Australia", value: "melbourne"}
                 ],
                 selectedLocation1: "",
                 selectedLocation2: ""
