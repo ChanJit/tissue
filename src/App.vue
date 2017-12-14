@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SampleHeader from './common/Header/Header';
+import SampleHeader from './common/Header/Header2';
 import SampleFooter from './common/Footer/Footer';
 import MenuBar from './common/MenuBar/MenuBar';
 

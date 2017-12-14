@@ -42,8 +42,12 @@
   .menuBar-link a:focus, .menuBar-link a:visited{
     text-decoration: none;
   }
+
   .header-container {
-    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media(min-width:480px) {
@@ -53,7 +57,9 @@
   }
   @media(min-width:768px) {
     .header-container {
-      max-width:992px
+      width: 750px;
+      margin-right: 15px;
+      margin-left: 15px;
     }
   }
   @media(min-width:1000px) {
