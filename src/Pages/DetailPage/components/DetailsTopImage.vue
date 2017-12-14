@@ -112,7 +112,7 @@ import * as api from '../../../data/api';
                     case "Gold Coast":
                         this.location.value = "gold-coast";
                         break;
-                    default: this.location.value = "kl";
+                    default: this.location.value = "default-city";
                 }
             }
         },
@@ -213,5 +213,9 @@ import * as api from '../../../data/api';
 
     .gold-coast {
         background-image: url("../../../assets/cities/gold-coast.png");
+    }
+
+    .default-city {
+        background-image: url("../../../assets/taiwan-city-life-wallpaper-2.png")
     }
 </style>
